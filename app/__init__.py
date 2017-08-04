@@ -19,12 +19,18 @@ def create_app(config_name):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
+    from .modules.apiCatalog import apiCatalog_blueprint
+    app.register_blueprint(apiCatalog_blueprint)
+
     # import the authentication blueprint and register it on the app
     from .modules.auth import auth_blueprint
     app.register_blueprint(auth_blueprint)
 
     from .modules.locations import location_blueprint
     app.register_blueprint(location_blueprint)
+
+    from .modules.companies import company_blueprint
+    app.register_blueprint(company_blueprint)
 
     from .modules.contracts import contract_blueprint
     app.register_blueprint(contract_blueprint)

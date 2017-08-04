@@ -84,6 +84,7 @@ class LocationsView(MethodView):
                 name = post_data['name']
                 address = post_data['address']
                 location = Location.query.filter_by(name=name).first()
+                company_id = post_data['company_id']
 
                 if location:
                     return {
@@ -120,7 +121,7 @@ class LocationsView(MethodView):
                         })
 
                 location = Location(
-                    name=name, address=address, geolocation=geolocation)
+                    name=name, address=address, geolocation=geolocation, company_id=company_id)
 
                 location.save()
 

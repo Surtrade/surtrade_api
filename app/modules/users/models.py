@@ -6,6 +6,7 @@ from flask_bcrypt import Bcrypt
 
 from app import db
 from app.modules.locations.models import Location
+from app.modules.companies.models import Company
 
 
 # Parent User Class to be extended to Customer and Agent
@@ -29,6 +30,7 @@ class User(db.Model):
     username = db.Column(db.String(255), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
+    role = db.Column(db.String(255), nullable=False)
     created_date = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # ALTER TABLE user ALTER COLUMN password TYPE varying(255)
@@ -43,12 +45,13 @@ class User(db.Model):
         'polymorphic_on': type
     }
 
-    def __init__(self, username, name, email, password):
+    def __init__(self, username, name, email, password, role):
         """Initialize the user with an email and a password."""
         self.username = username
         self.name = name
         self.email = email
         self.password = Bcrypt().generate_password_hash(password).decode()
+        self.role = role
 
     def password_is_valid(self, password):
         """
@@ -114,19 +117,20 @@ class Customer(User):
 
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
-    # Many to many contracts
-    agents = db.relationship("Agent", secondary="contracts")
+    # Many to many contract
+    agent = db.relationship("Agent", secondary="contract")
 
     __mapper_args__ = {
         'polymorphic_identity': 'customer'
     }
 
-    def __init__(self, username, email, password, name):
+    def __init__(self, username, email, password, name, role):
         """Initialize the user with an email and a password."""
         self.username = username
         self.name = name
         self.email = email
         self.password = Bcrypt().generate_password_hash(password).decode()
+        self.role = role
 
 
 # Agent user extension of User Class
@@ -148,17 +152,18 @@ class Agent(User):
     location_id = db.Column(db.Integer, db.ForeignKey(Location.id))
     location = db.relationship("Location", back_populates="agents")
 
-    # Many to many contracts
-    customers = db.relationship("Customer", secondary="contracts")
+    # Many to many contract
+    customers = db.relationship("Customer", secondary="contract")
 
     __mapper_args__ = {
         'polymorphic_identity': 'agent'
     }
 
-    def __init__(self, username, email, password, name, location_id):
+    def __init__(self, username, email, password, name, location_id, role):
         """Initialize the user with an email and a password."""
         self.username = username
         self.name = name
         self.email = email
         self.password = Bcrypt().generate_password_hash(password).decode()
         self.location_id = location_id
+        self.role = role

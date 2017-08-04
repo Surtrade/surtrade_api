@@ -7,19 +7,19 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET = os.getenv('SECRET')
     GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-    # print(GOOGLE_API_KEY)
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
-
+    DATABASE_URL_DEV = os.getenv('DATABASE_URL_DEV')
 
 class DevelopmentConfig(Config):
     """Configurations for Development."""
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = Config.DATABASE_URL_DEV
 
 
 class TestingConfig(Config):
     """Configurations for Testing, with a separate test database."""
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/security_handler_test_db'
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL_TEST')
     DEBUG = True
 
 

@@ -25,26 +25,23 @@ class RegistrationView(MethodView):
                 password = post_data['password']
                 name = post_data['name']
                 username = post_data['username']
+                role = post_data['role']
 
-                if 'type' in request.data:
-                    usertype = post_data['type']
+                print ("Role: "+role)
 
-                    if usertype.lower() == "customer":
-                        user = Customer(
-                            email=email, password=password, name=name, username=username)
-                    elif usertype.lower() == "agent":
-                        location_id = post_data['location_id']
-                        user = Agent(email=email, password=password, name=name, username=username, location_id=location_id)
-                    else:
-                        user = User(email=email, password=password, name=name, username=username)
-
+                if role.lower() == "customer":
+                    user = Customer(email=email, password=password, name=name, username=username, role=role)
+                elif role.lower() == "agent":
+                    location_id = post_data['location_id']
+                    user = Agent(email=email, password=password, name=name, username=username, location_id=location_id,
+                                 role=role)
                 else:
-                    user = User(email=email, password=password, name=name, username=username)
+                    user = User(email=email, password=password, name=name, username=username, role=role)
 
                 user.save()
 
                 response = {
-                    'message': 'You registered successfully. Please log in.'
+                    'message': 'You registered successfully a {} . Please log in.'.format(user.role)
                 }
                 # return a response notifying the user that they registered successfully
                 return make_response(jsonify(response)), 201

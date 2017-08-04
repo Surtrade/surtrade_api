@@ -1,4 +1,5 @@
 from app import db
+from app.modules.companies.models import Company
 
 
 class Location(db.Model):
@@ -19,9 +20,10 @@ class Location(db.Model):
     name = db.Column(db.String(256), nullable=False, unique=True)
     address = db.Column(db.String(256), nullable=True)
     geolocation = db.Column(db.JSON)
-    # lat = db.Column(db.Numeric(10, 6), nullable=False)
-    # lng = db.Column(db.Numeric(10, 6), nullable=False)
-    # type = db.Column(db.String(256), nullable=True)
+
+    # Connection to company
+    company_id = db.Column(db.Integer, db.ForeignKey(Company.id))
+    company = db.relationship("Company", back_populates="locations")
 
     agents = db.relationship('Agent', order_by='Agent.id',
                              cascade="all, delete-orphan", back_populates="location")
@@ -30,14 +32,15 @@ class Location(db.Model):
         'polymorphic_identity': 'location',
     }
 
-    def __init__(self, name, address, geolocation):
+    def __init__(self, name, address, geolocation, company_id):
         """initialize with all values."""
         self.name = name
         self.address = address
         self.geolocation = geolocation
-        # self.lat = lat
-        # self.lng = lng
-        # self.type = type
+        self.company_id = company_id
+
+    def __repr__(self):
+        return "<Location: {0} >".format(self.name)
 
     def save(self):
         db.session.add(self)
@@ -46,13 +49,10 @@ class Location(db.Model):
     def get_agents_in_location(self):
         return self.agents
 
-    @staticmethod
-    def get_all():
-        return Location.query.all()
-
     def delete(self):
         db.session.delete(self)
         db.session.commit()
 
-    def __repr__(self):
-        return "<Location: {0} >".format(self.name)
+    @staticmethod
+    def get_all():
+        return Location.query.all()

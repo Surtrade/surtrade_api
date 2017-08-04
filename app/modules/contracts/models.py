@@ -15,25 +15,21 @@ class Contract(db.Model):
     ***---------------------***
     """
 
-    __tablename__ = 'contracts'
+    __tablename__ = 'contract'
 
-    customer_id = db.Column(db.Integer, db.ForeignKey(
-        'customer.id'), primary_key=True)
-    agent_id = db.Column(db.Integer, db.ForeignKey(
-        'agent.id'), primary_key=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), primary_key=True)
+    agent_id = db.Column(db.Integer, db.ForeignKey('agent.id'), primary_key=True)
 
     status = db.Column(db.Boolean, default=True)
     auto_authorize = db.Column(db.Boolean, default=False)
     expire = db.Column(db.DateTime)
 
     # Objects referencing back to
-    customer = db.relationship("Customer", backref=db.backref(
-        "contracts", cascade="all, delete-orphan"))
-    agent = db.relationship("Agent", backref=db.backref(
-        "contracts", cascade="all, delete-orphan"))
+    customer = db.relationship("Customer", backref=db.backref("contract", cascade="all, delete-orphan"))
+    agent = db.relationship("Agent", backref=db.backref("contract", cascade="all, delete-orphan"))
 
     __mapper_args__ = {
-        'polymorphic_identity': 'contracts'
+        'polymorphic_identity': 'contract'
     }
 
     def __init__(self, customer_id, agent_id, auto_authorize, expire):
@@ -44,8 +40,8 @@ class Contract(db.Model):
         self.expire = expire
 
     def __repr__(self):
-        return '<contracts {0} between {1} and {2}. Expires: {3}>'.format(self.id, self.customer.name,
-                                                                                   self.agent.name, self.expire)
+        return '<contract {0} between {1} and {2}. Expires: {3}>'\
+            .format(self.id, self.customer.name, self.agent.name, self.expire)
 
     def save(self):
         db.session.add(self)
@@ -53,7 +49,7 @@ class Contract(db.Model):
 
     def check_expire(self):
         if self.expire < datetime.utcnow() and not self.auto_authorize and self.status == True:
-            print("expiring the contracts")
+            print("expiring the contract")
             self.status = False
             self.save()
 
