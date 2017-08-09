@@ -13,6 +13,7 @@ google_api_key = config.Config.GOOGLE_API_KEY
 gmaps = googlemaps.Client(key=google_api_key)
 
 
+# inactive class
 class AgentsView(MethodView):
     def action(self, method):
 
@@ -92,7 +93,7 @@ class AgentsView(MethodView):
                                     contract = Contract.query.filter_by(
                                         agent_id=agent.id, customer_id=customer_id).first()
 
-                                    if not contract or not contract.check_expire():
+                                    if not contract or not contract.check_status():
                                         obj = {
                                             'id': agent.id,
                                             'name': agent.name,
