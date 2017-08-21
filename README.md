@@ -11,6 +11,9 @@
 ## Server
 - To start server type "flask run"
 
+## Local Tunnel
+- type  "lt --port 5000 --subdomain surtrade"
+
 ## PostgreSQL 
 **[Get Started](https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx)**
 - Create a role

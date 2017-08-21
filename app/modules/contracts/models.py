@@ -18,7 +18,9 @@ class Contract(db.Model):
     __tablename__ = 'contract'
 
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), primary_key=True)
-    agent_id = db.Column(db.Integer, db.ForeignKey('agent.id'), primary_key=True)
+    # Refactoring
+    # agent_id = db.Column(db.Integer, db.ForeignKey('agent.id'), primary_key=True)
+    location_id = db.Column(db.Integer, db.ForeignKey('location.id'), primary_key=True)
 
     status = db.Column(db.Boolean, nullable=False, default=True)
     auto_authorize = db.Column(db.Boolean, default=False)
@@ -27,23 +29,30 @@ class Contract(db.Model):
 
     # Objects referencing back to
     customer = db.relationship("Customer", backref=db.backref("contract", cascade="all, delete-orphan"))
-    agent = db.relationship("Agent", backref=db.backref("contract", cascade="all, delete-orphan"))
+    # Refactoring
+    # agent = db.relationship("Agent", backref=db.backref("contract", cascade="all, delete-orphan"))
+    location = db.relationship("Location", backref=db.backref("contract", cascade="all, delete-orphan"))
 
     __mapper_args__ = {
         'polymorphic_identity': 'contract'
     }
 
-    def __init__(self, customer_id, agent_id, auto_authorize, expire, options):
+    # Refactoring
+    def __init__(self, customer_id, location_id, auto_authorize, expire, options):
+    # def __init__(self, customer_id, agent_id, auto_authorize, expire, options):
         self.customer_id = customer_id
-        self.agent_id = agent_id
+        # self.agent_id = agent_id
+        self.location_id = location_id
         self.status = True
         self.auto_authorize = auto_authorize
         self.expire = expire
         self.options = options
 
     def __repr__(self):
-        return '<contract {0} between {1} and {2}. Expires: {3}>'\
-            .format(self.id, self.customer.name, self.agent.name, self.expire, self.options)
+        return '<contract {0} between {1} and {2}. Expires: {3}>' \
+            .format(self.id, self.customer.name, self.location.name, self.expire, self.options)
+            # .format(self.id, self.customer.name, self.agent.name, self.expire, self.options)
+
 
     def save(self):
         db.session.add(self)
@@ -82,6 +91,12 @@ class Contract(db.Model):
     def get_all():
         return Contract.query.all()
 
+    # Refactoring
+    # @staticmethod
+    # def get_one(customer_id, agent_id):
+    #     return Contract.query.filter_by(customer_id=customer_id, agent_id=agent_id).first()
+
     @staticmethod
-    def get_one(customer_id, agent_id):
-        return Contract.query.filter_by(customer_id=customer_id, agent_id=agent_id).first()
+    def get_one(customer_id, location_id):
+        return Contract.query.filter_by(customer_id=customer_id, location_id=location_id).first()
+

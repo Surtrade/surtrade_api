@@ -78,6 +78,7 @@ class LoginView(MethodView):
                 # User does not exist. Therefore, we return an error message
                 response = {
                     'message': 'Invalid email/username or password, Please try again'
+
                 }
                 return make_response(jsonify(response)), 401
 
@@ -88,7 +89,10 @@ class LoginView(MethodView):
                 if access_token:
                     response = {
                         'message': 'You logged in successfully.',
-                        'access_token': access_token.decode()
+                        'access_token': access_token.decode(),
+                        'user_id': user.id,
+                        'user_name': user.name,
+                        'user_role': user.role
                     }
                     return make_response(jsonify(response)), 200
             else:

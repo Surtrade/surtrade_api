@@ -9,7 +9,6 @@ from . import apiCatalog_blueprint
 class ApiCatalogView(MethodView):
 
     def action(self, method):
-        print("gimme the services")
 
         from app.modules.users.models import User
 
@@ -103,6 +102,158 @@ class ApiCatalogView(MethodView):
 
     def post(self):
         response = self.action('POST')
+        if 'status' in response:
+            status = response['status']
+            del response['status']
+        else:
+            status = 200
+
+        return make_response(jsonify(response)), status
+
+
+# TODO remove: used for sessions dummy data
+class SessionsView(MethodView):
+
+    def action(self, method):
+
+        try:
+
+            response = []
+
+            if method == "GET":
+                response = [
+                    {
+                        'id': '1',
+                        'title': 'Session 1',
+                        'start': '2016-10-03T12:00:00Z',
+                        'end': '2016-10-03T13:00:00Z',
+                        'room': 'room1',
+                        'roomInfo': {
+                            'roomId': 'room1',
+                            'name': 'Myroom1',
+                            'url': 'http://google.com',
+                            'theme': ''
+                        },
+                        'speakers': [
+                            {
+                                'id': '1',
+                                'name': 'Speaker 1',
+                                'company': 'Company 1',
+                                'picture': '',
+                                'twitterName': '@Speaker1'
+                            },
+                            {
+                                'id': '2',
+                                'name': 'Speaker 2',
+                                'company': 'Company 1',
+                                'picture': '',
+                                'twitterName': '@Speaker2'
+                            }
+                        ],
+                        'description': 'Session 1 desc',
+                        'descriptionShort': 'Session 1 short desc',
+                        'calendarEventId': '',
+                        'isBreak': False
+                    },
+                    {
+                        'id': '2',
+                        'title': 'Session 2',
+                        'start': '2016-10-04T13:00:00Z',
+                        'end': '2016-10-04T14:00:00Z',
+                        'room': 'room2',
+                        'roomInfo': {
+                            'roomId': 'room2',
+                            'name': 'Myroom2',
+                            'url': 'http://google.com',
+                            'theme': ''
+                        },
+                        'speakers': [
+                            {
+                                'id': '3',
+                                'name': 'Speaker 3',
+                                'company': 'Company 2',
+                                'picture': '',
+                                'twitterName': '@Speaker3'
+                            },
+                            {
+                                'id': '4',
+                                'name': 'Speaker 4',
+                                'company': 'Company 2',
+                                'picture': '',
+                                'twitterName': '@Speaker4'
+                            }
+                        ],
+                        'description': 'Session 2 desc',
+                        'descriptionShort': 'Session 2 short desc',
+                        'calendarEventId': '',
+                        'isBreak': False
+                    },
+                    {
+                        'id': '3',
+                        'title': 'Session 3',
+                        'start': '2016-10-05T15:00:00Z',
+                        'end': '2016-10-05T16:00:00Z',
+                        'room': 'room3',
+                        'roomInfo': {
+                            'roomId': 'room3',
+                            'name': 'Myroom3',
+                            'url': 'http://google.com',
+                            'theme': ''
+                        },
+                        'speakers': [
+                            {
+                                'id': '1',
+                                'name': 'Speaker 1',
+                                'company': 'Company 1',
+                                'picture': '',
+                                'twitterName': '@Speaker1'
+                            },
+                            {
+                                'id': '3',
+                                'name': 'Speaker 3',
+                                'company': 'Company 2',
+                                'picture': '',
+                                'twitterName': '@Speaker3'
+                            },
+                            {
+                                'id': '4',
+                                'name': 'Speaker 4',
+                                'company': 'Company 2',
+                                'picture': '',
+                                'twitterName': '@Speaker4'
+                            }
+                        ],
+                        'description': 'Session 3 desc',
+                        'descriptionShort': 'Session 3 short desc',
+                        'calendarEventId': '',
+                        'isBreak': False
+                    },
+                    {
+                        'id': '4',
+                        'title': 'Break 1',
+                        'start': '2016-10-03T14:00:00Z',
+                        'end': '2016-10-03T15:00:00Z',
+                        'room': '',
+                        'roomInfo': 'null',
+                        'speakers': [],
+                        'description': '',
+                        'descriptionShort': '',
+                        'calendarEventId': '',
+                        'isBreak': True
+                    }
+                ]
+
+            return response
+
+        except Exception as e:
+            # Create a response containing an string error message
+            return {
+                'message': str(e),
+                'status': 500
+            }
+
+    def get(self):
+        response = self.action('GET')
         if 'status' in response:
             status = response['status']
             del response['status']
@@ -224,6 +375,9 @@ class OneApiCatalogVew(MethodView):
 apiCatalog_view = ApiCatalogView.as_view('apiCatalogs_view')
 one_apiCatalog_view = OneApiCatalogVew.as_view('one_apiCatalog_view')
 
+# TODO remove: used for sessions dummy data
+sessions_view = SessionsView.as_view('sessions_view')
+
 apiCatalog_blueprint.add_url_rule(
     '/services',
     view_func=apiCatalog_view,
@@ -233,3 +387,10 @@ apiCatalog_blueprint.add_url_rule(
     '/services/<int:id>',
     view_func=one_apiCatalog_view,
     methods=['GET', 'PUT', 'DELETE'])
+
+
+# TODO remove: used for sessions dummy data
+apiCatalog_blueprint.add_url_rule(
+    '/sessions',
+    view_func=sessions_view,
+    methods=['GET'])

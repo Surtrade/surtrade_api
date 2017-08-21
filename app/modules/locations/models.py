@@ -28,6 +28,10 @@ class Location(db.Model):
     agents = db.relationship('Agent', order_by='Agent.id',
                              cascade="all, delete-orphan", back_populates="location")
 
+    # Many to many contract
+    # Refactoring
+    customers = db.relationship("Customer", secondary="contract")
+
     __mapper_args__ = {
         'polymorphic_identity': 'location',
     }

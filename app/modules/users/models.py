@@ -118,7 +118,9 @@ class Customer(User):
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
     # Many to many contract
-    agent = db.relationship("Agent", secondary="contract")
+    # Refactoring
+    # agent = db.relationship("Agent", secondary="contract")
+    location = db.relationship("Location", secondary="contract")
 
     __mapper_args__ = {
         'polymorphic_identity': 'customer'
@@ -153,7 +155,8 @@ class Agent(User):
     location = db.relationship("Location", back_populates="agents")
 
     # Many to many contract
-    customers = db.relationship("Customer", secondary="contract")
+    # Refactoring
+    # customers = db.relationship("Customer", secondary="contract")
 
     __mapper_args__ = {
         'polymorphic_identity': 'agent'
