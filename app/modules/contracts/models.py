@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 from app import db
 
@@ -49,29 +50,41 @@ class Contract(db.Model):
         self.options = options
 
     def __repr__(self):
-        return '<contract {0} between {1} and {2}. Expires: {3}>' \
-            .format(self.id, self.customer.name, self.location.name, self.expire, self.options)
+        return '<Contract between {0} and {1} >'.format(self.customer.id, self.location.id)
             # .format(self.id, self.customer.name, self.agent.name, self.expire, self.options)
-
 
     def save(self):
         db.session.add(self)
         db.session.commit()
 
+    def expireContract(self):
+        self.status = False
+        self.save()
+
     # This method verifies the status of a contract
     # if necessary, it expires it.
     def check_status(self):
+        print("Checking status.. ")
         # if status is false then it is directly returned
         if not self.status:
             return self.status
 
+        print(".. it was true")
+
+        options = self.options
+        # print("options expire_method 1: " + str(options.expire_method))
+        print("options expire_method type: " + str(type(options)))
+        print("options expire_method 2: " + str(options['expire_method']))
+
         # Verify Contract Options
-        if 'expire_method' in self.options:
-            expire_method = self.options['expire_method']
-            if expire_method == 'time' and not self.auto_authorize and self.expire < datetime.utcnow():
-                print("expiring the contract because options expire method is time")
-                self.status = False
-                self.save()
+        if options:
+            print("options: " + str(options))
+            if options['expire_method'] == 'time':
+                print("expire "+ str(self.expire))
+                if self.expire < datetime.utcnow():
+                    print("expiring the contract because options expire method is time")
+                    self.status = False
+                    self.save()
             # elif expire_method == 'location'
 
         # if there are no contract options location is more important than expire time

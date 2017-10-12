@@ -16,7 +16,7 @@ class ContractView(MethodView):
             if not auth_header:
                 return {
                     'message': "Token missing.",
-                    'status': 400
+                    'res-status': 400
                 }
             access_token = auth_header.split(" ")[1]
 
@@ -25,7 +25,7 @@ class ContractView(MethodView):
                 # Attempt to decode the token and get the User ID
                 return {
                     'message': "Authentication token error.",
-                    'status': 511
+                    'res-status': 511
                 }
 
             response = {}
@@ -41,18 +41,20 @@ class ContractView(MethodView):
                 location_id = request.data['location_id']
                 auto_authorize = request.data['auto_authorize']
                 expire = request.data['expire']
+                print("expire in mins: "+ str(expire))
                 options = request.data['options']
+
+                print("options: "+ str(options))
 
                 from datetime import datetime, timedelta
                 expire = datetime.utcnow() + timedelta(minutes=int(expire))
+                print("Expire in date: "+str(expire))
+                print("current time: "+str(datetime.utcnow()))
 
-                # print ("step")
                 # Refactoring
-                contract = Contract.query.filter_by(
-                    customer_id=customer_id, location_id=location_id).first()
+                contract = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).first()
                     # customer_id=customer_id, agent_id=agent_id).first()
 
-                # print("step2")
                 # Refactoring
                 if not contract:
                     contract = Contract(customer_id, location_id, auto_authorize, expire, options)
@@ -63,6 +65,7 @@ class ContractView(MethodView):
                 else:
                     contract.status = True
                     contract.expire = expire
+                    contract.options = options
                     contract.auto_authorize = auto_authorize
                     contract.save()
 
@@ -79,7 +82,7 @@ class ContractView(MethodView):
             # Create a response containing an string error message
             response = {
                 'message': str(e),
-                'status': 500
+                'res-status': 500
             }
             # Return a server error using the HTTP Error Code 500 (Internal Server Error)
 
@@ -87,9 +90,9 @@ class ContractView(MethodView):
 
     def post(self):
         response = self.action('POST')
-        if 'status' in response:
-            status = response['status']
-            del response['status']
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
         else:
             status = 200
 
@@ -107,7 +110,7 @@ class ContractOneView(MethodView):
             if not auth_header:
                 return {
                     'message': "Token missing.",
-                    'status': 400
+                    'res-status': 400
                 }
             access_token = auth_header.split(" ")[1]
 
@@ -116,7 +119,7 @@ class ContractOneView(MethodView):
                 # Attempt to decode the token and get the User ID
                 return {
                     'message': "Authentication token error.",
-                    'status': 511
+                    'res-status': 511
                 }
 
             customer_id = User.decode_token(access_token)
@@ -127,17 +130,19 @@ class ContractOneView(MethodView):
             print("Location: "+str(location_id))
 
             contract = Contract.query.filter_by(location_id=location_id, customer_id=customer_id).first()
+            print("ttt")
 
-            # print ("contract expires: "+str(contract.expire))
-
-            if not contract or not contract.status:
+            if not contract or not contract.check_status():
                 print("Nooooo")
                 return {
                     'message': "No active contract",
-                    'status': 404
+                    'res-status': 404
                 }
 
+            print("meth: "+method)
             if method == "GET":
+                print("asdfgghhhhhhhh")
+
                 response = {
                     'customer_id': contract.customer_id,
                     'location_id': contract.location_id,
@@ -145,18 +150,19 @@ class ContractOneView(MethodView):
                     'auto_authorize': contract.auto_authorize,
                     'expire': contract.expire,
                     'options': contract.options,
-                    'status': 200
+                    'res-status': 200
                 }
 
             print("response: "+str(response))
 
+            print("asdffgg")
             return response
 
         except Exception as e:
             # Create a response containing an string error message
             response = {
-                'message': str(e),
-                'status': 500
+                'message': str(e.message),
+                'res-status': 500
             }
             # Return a server error using the HTTP Error Code 500 (Internal Server Error)
 
@@ -164,8 +170,8 @@ class ContractOneView(MethodView):
 
     def get(self, id):
         response = self.action('GET', id)
-        status = response['status']
-        del response['status']
+        status = response['res-status']
+        del response['res-status']
 
         return make_response(jsonify(response)), status
 
@@ -181,7 +187,7 @@ class ContractActiveView(MethodView):
             if not auth_header:
                 return {
                     'message': "Token missing.",
-                    'status': 400
+                    'res-status': 400
                 }
 
             access_token = auth_header.split(" ")[1]
@@ -191,57 +197,36 @@ class ContractActiveView(MethodView):
                 # Attempt to decode the token and get the User ID
                 return {
                     'message': "Authentication token error.",
-                    'status': 511
+                    'res-status': 511
                 }
 
-            customer_id = request.data['customer_id']
-
-            # Heavy Refactoring
-            # if 'agent_id' in request.data:
-            #     agent_id = request.data['agent_id']
-            # elif 'location_id' in request.data:
-            #     location_id = request.data['location_id']
-            #
-            #     from app.modules.locations.models import Location
-            #     location = Location.query.get(location_id)
-            #     agents = location.get_agents_in_location()
-            #
-            #     agent_id = 0
-            #     for agent in agents:
-            #         if Contract.query.filter_by(customer_id=customer_id, agent_id=agent.id).first():
-            #             agent_id = agent.id
-            #
-            # else:
-            #     return {
-            #         'message': "Agent id or Location id missing.",
-            #         'status': 400
-            #     }
-            location_id = request.data['location_id']
+            contracts = []
 
             if method == 'POST':
-                # Heavy Refactoring
-                # contract = Contract.query.filter_by(customer_id=customer_id, agent_id=agent_id).first()
-                #
-                # if contract and contract.check_status():
-                #     obj = {
-                #         'customer_id': contract.customer_id,
-                #         'agent_id': contract.agent_id,
-                #         'status': contract.status,
-                #         'auto_authorize': contract.auto_authorize,
-                #         'expire': contract.expire,
-                #         'options': contract.options
-                #     }
-                #     response.append(obj)
-                # else:
-                #     response = {
-                #         'message': 'No active Contract between {0} and {1}'.format(customer_id, agent_id),
-                #         'status': 404
-                #      }
+                if 'customer_id' in request.data and 'location_id' in request.data:
+                    customer_id = request.data['customer_id']
+                    location_id = request.data['location_id']
+                    contracts = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).all()
 
-                contract = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).first()
+                elif 'customer_id' in request.data:
+                    customer_id = request.data['customer_id']
+                    contracts = Contract.query.filter_by(customer_id=customer_id).all()
 
-                response = []
-                if contract and contract.check_status():
+                elif 'location_id' in request.data:
+                    location_id = request.data['location_id']
+                    contracts = Contract.query.filter_by(location_id=location_id).all()
+
+            if method == "GET":
+                contracts = Contract.query.all()
+
+            response = []
+
+            for contract in contracts:
+                print("b contract expire:"+str(contract.expire))
+                print("b contract status:"+ str(contract.status))
+                if contract.check_status():
+                    print("a contract expire:" +str(contract.expire))
+                    print("a contract status:" + str(contract.status))
                     obj = {
                         'customer_id': contract.customer_id,
                         'location_id': contract.location_id,
@@ -251,11 +236,12 @@ class ContractActiveView(MethodView):
                         'options': contract.options
                     }
                     response.append(obj)
-                else:
-                    response = {
-                        'message': 'No active Contract between {0} and location {1}'.format(customer_id, location_id),
-                        'status': 404
-                    }
+
+            if len(response) == 0:
+                response = {
+                    'message': 'No active Contracts found.',
+                    'res-status': 404
+                }
 
             return response
 
@@ -264,16 +250,26 @@ class ContractActiveView(MethodView):
             # Return a server error using the HTTP Error Code 500 (Internal Server Error)
             response = {
                 'message': str(e),
-                'status': 500
+                'res-status': 500
             }
 
             return response
 
     def post(self):
         response = self.action('POST')
-        if 'status' in response:
-            status = response['status']
-            del response['status']
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
+        else:
+            status = 200
+
+        return make_response(jsonify(response)), status
+
+    def get(self):
+        response = self.action('GET')
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
         else:
             status = 200
 
@@ -291,7 +287,7 @@ class ContractExpireView(MethodView):
             if not auth_header:
                 return {
                     'message': "Token missing.",
-                    'status': 400
+                    'res-status': 400
                 }
 
             access_token = auth_header.split(" ")[1]
@@ -301,61 +297,27 @@ class ContractExpireView(MethodView):
                 # Attempt to decode the token and get the User ID
                 return {
                     'message': "Authentication token error.",
-                    'status': 511
+                    'res-status': 511
                 }
 
             customer_id = request.data['customer_id']
-
-            # Heavi Refactoring
-            # if 'agent_id' in request.data:
-            #     agent_id = request.data['agent_id']
-            # elif 'location_id' in request.data:
-            #     location_id = request.data['location_id']
-            #
-            #     from app.modules.locations.models import Location
-            #     location = Location.query.get(location_id)
-            #     agents = location.get_agents_in_location()
-            #
-            #     agent_id = 0
-            #     for agent in agents:
-            #         if Contract.query.filter_by(customer_id=customer_id, agent_id=agent.id).first():
-            #             agent_id = agent.id
-            #
-            # else:
-            #     return {
-            #         'message': "Agent id or Location id missing.",
-            #         'status': 400
-            #     }
-
             location_id = request.data['location_id']
+
             response = []
 
             if method == 'POST':
-                # Heavy Refactoring
-                # contract = Contract.query.filter_by(customer_id=customer_id, agent_id=agent_id).first()
-                #
-                # if contract and contract.check_status():
-                #     contract.expire()
-                #     response = {
-                #         'message': 'Contract between {0} and {1} expired.'.format(customer_id, agent_id)
-                #     }
-                # else:
-                #     response = {
-                #         'message': 'No active Contract between {0} and {1}'.format(customer_id, agent_id),
-                #         'status': 404
-                #     }
 
                 contract = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).first()
 
                 if contract and contract.check_status():
-                    contract.expire()
+                    contract.expireContract()
                     response = {
                         'message': 'Contract between {0} and location {1} expired.'.format(customer_id, location_id)
                     }
                 else:
                     response = {
                         'message': 'No active Contract between {0} and location {1}'.format(customer_id, location_id),
-                        'status': 404
+                        'res-status': 404
                     }
 
             return response
@@ -365,16 +327,16 @@ class ContractExpireView(MethodView):
             # Return a server error using the HTTP Error Code 500 (Internal Server Error)
             response = {
                 'message': str(e),
-                'status': 500
+                'res-status': 500
             }
 
             return response
 
     def post(self):
         response = self.action('POST')
-        if 'status' in response:
-            status = response['status']
-            del response['status']
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
         else:
             status = 200
 
@@ -392,7 +354,7 @@ class ContractOptionsView(MethodView):
             if not auth_header:
                 return {
                     'message': "Token missing.",
-                    'status': 400
+                    'res-status': 400
                 }
 
             access_token = auth_header.split(" ")[1]
@@ -402,45 +364,20 @@ class ContractOptionsView(MethodView):
                 # Attempt to decode the token and get the User ID
                 return {
                     'message': "Authentication token error.",
-                    'status': 511
+                    'res-status': 511
                 }
 
             customer_id = request.data['customer_id']
 
-            # Heavy Refactoring
-            # if 'agent_id' in request.data:
-            #     agent_id = request.data['agent_id']
-            # elif 'location_id' in request.data:
-            #     location_id = request.data['location_id']
-            #
-            #     from app.modules.locations.models import Location
-            #     location = Location.query.get(location_id)
-            #     agents = location.get_agents_in_location()
-            #
-            #     agent_id = 0
-            #     for agent in agents:
-            #         if Contract.query.filter_by(customer_id=customer_id, agent_id=agent.id).first():
-            #             agent_id = agent.id
-            #
-            # else:
-            #     return {
-            #         'message': "Agent Id or Location Id missing.",
-            #         'status': 400
-            #     }
-
             location_id = request.data['location_id']
             response = {}
 
-            # Refactoring
-            # contract = Contract.query.filter_by(customer_id=customer_id, agent_id=agent_id).first()
             contract = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).first()
 
             if not contract or not contract.check_status():
                 return {
-                        # Refactoring
-                        # 'message': 'No active Contract between {0} and {1}'.format(customer_id, agent_id),
                         'message': 'No active Contract between {0} and location {1}'.format(customer_id, location_id),
-                        'status': 404
+                        'res-status': 404
                     }
 
             if method == 'POST':
@@ -452,8 +389,6 @@ class ContractOptionsView(MethodView):
 
                 response = {
                     'customer_id': contract.customer_id,
-                    # Refactoring
-                    # 'agent_id': contract.agent_id,
                     'location_id': contract.location_id,
                     'status': contract.status,
                     'auto_authorize': contract.auto_authorize,
@@ -468,16 +403,16 @@ class ContractOptionsView(MethodView):
             # Return a server error using the HTTP Error Code 500 (Internal Server Error)
             response = {
                 'message': str(e),
-                'status': 500
+                'res-status': 500
             }
 
             return response
 
     def post(self):
         response = self.action('POST')
-        if 'status' in response:
-            status = response['status']
-            del response['status']
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
         else:
             status = 200
 
@@ -485,9 +420,9 @@ class ContractOptionsView(MethodView):
 
     def patch(self):
         response = self.action('PATCH')
-        if 'status' in response:
-            status = response['status']
-            del response['status']
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
         else:
             status = 200
 
@@ -513,7 +448,7 @@ contract_blueprint.add_url_rule(
 contract_blueprint.add_url_rule(
     '/contracts/active',
     view_func=contract_active_view,
-    methods=['POST'])
+    methods=['POST', 'GET'])
 
 contract_blueprint.add_url_rule(
     '/contracts/expire',
