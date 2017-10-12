@@ -2,7 +2,7 @@ source surtradeenv/bin/activate
 export FLASK_APP="run.py"
 export SECRET="very-long-string-of-random-characters-Security-Handler"
 export APP_SETTINGS="production"
-export DATABASE_URL="postgresql://localhost/surtrade_api_db"
+export DATABASE_URL="postgresql://surtrade:Surtrade1!@localhost/surtrade_api_db"
 export DATABASE_URL_DEV="postgresql://localhost/surtrade_api_dev_db"
 export DATABASE_URL_TEST="postgresql://localhost/surtrade_api_test_db"
 export GOOGLE_API_KEY="AIzaSyDxP5m1upC83rn1UGMOam1RFN-RNYjQPfk"
