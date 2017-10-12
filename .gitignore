@@ -83,12 +83,15 @@ celerybeat-schedule
 *.sage.py
 
 # dotenv
-.env
+#.env
+#.surtradeenv
 
 # virtualenv
 .venv
 venv/
 ENV/
+surtradeenv/
+
 
 # Spyder project settings
 .spyderproject
