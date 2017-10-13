@@ -176,6 +176,108 @@ class ContractOneView(MethodView):
         return make_response(jsonify(response)), status
 
 
+class ContractCustomersView(MethodView):
+    def action(self, method, location_id):
+
+        from app.modules.users.models import User
+
+        try:
+            # Get the access token from the header
+            auth_header = request.headers.get('Authorization')
+            if not auth_header:
+                return {
+                    'message': "Token missing.",
+                    'res-status': 400
+                }
+
+            access_token = auth_header.split(" ")[1]
+
+            # Verify correct token
+            if not access_token or isinstance(User.decode_token(access_token), str):
+                # Attempt to decode the token and get the User ID
+                return {
+                    'message': "Authentication token error.",
+                    'res-status': 511
+                }
+
+            contracts = []
+
+            # if method == 'POST':
+            #     if 'customer_id' in request.data and 'location_id' in request.data:
+            #         customer_id = request.data['customer_id']
+            #         location_id = request.data['location_id']
+            #         contracts = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).all()
+            #
+            #     elif 'customer_id' in request.data:
+            #         customer_id = request.data['customer_id']
+            #         contracts = Contract.query.filter_by(customer_id=customer_id).all()
+            #
+            #     elif 'location_id' in request.data:
+            #         location_id = request.data['location_id']
+            #         contracts = Contract.query.filter_by(location_id=location_id).all()
+
+            if method == "GET":
+                contracts = Contract.query.filter_by(location_id=location_id).all()
+
+            response = []
+
+            from app.modules.users.models import Customer
+
+            for contract in contracts:
+                # print("b contract expire:"+str(contract.expire))
+                # print("b contract status:"+ str(contract.status))
+                if contract.check_status():
+                    # print("a contract expire:" +str(contract.expire))
+                    # print("a contract status:" + str(contract.status))
+
+                    customer = Customer.query.filter_by(id=contract.customer_id).first()
+                    obj = {
+                        'customer_id': customer.id,
+                        'customer_name': customer.name,
+                        'customer_username': customer.username,
+                        'customer_email': customer.email
+                    }
+                    response.append(obj)
+
+            if len(response) == 0:
+                response = {
+                    'message': 'No active Contracts found.',
+                    'res-status': 404
+                }
+
+            return response
+
+        except Exception as e:
+            # Create a response containing an string error message
+            # Return a server error using the HTTP Error Code 500 (Internal Server Error)
+            response = {
+                'message': str(e),
+                'res-status': 500
+            }
+
+            return response
+
+    # def post(self):
+    #     response = self.action('POST')
+    #     if 'res-status' in response:
+    #         status = response['res-status']
+    #         del response['res-status']
+    #     else:
+    #         status = 200
+    #
+    #     return make_response(jsonify(response)), status
+
+    def get(self, id):
+        response = self.action('GET', id)
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
+        else:
+            status = 200
+
+        return make_response(jsonify(response)), status
+
+
 class ContractActiveView(MethodView):
     def action(self, method):
 
@@ -221,14 +323,19 @@ class ContractActiveView(MethodView):
 
             response = []
 
+            from app.modules.users.models import Customer
+
             for contract in contracts:
-                print("b contract expire:"+str(contract.expire))
-                print("b contract status:"+ str(contract.status))
+                # print("b contract expire:"+str(contract.expire))
+                # print("b contract status:"+ str(contract.status))
                 if contract.check_status():
-                    print("a contract expire:" +str(contract.expire))
-                    print("a contract status:" + str(contract.status))
+                    # print("a contract expire:" +str(contract.expire))
+                    # print("a contract status:" + str(contract.status))
+
+                    customer = Customer.query.filter_by(id=contract.customer_id).first()
                     obj = {
                         'customer_id': contract.customer_id,
+                        'customer_name': customer.name,
                         'location_id': contract.location_id,
                         'status': contract.status,
                         'auto_authorize': contract.auto_authorize,
@@ -431,6 +538,7 @@ class ContractOptionsView(MethodView):
 
 contract_view = ContractView.as_view('contract_view')
 contract_one_view = ContractOneView.as_view('contract_one_view')
+contract_customers_view = ContractCustomersView.as_view('contract_customer_view')
 contract_active_view = ContractActiveView.as_view('contract_active_view')
 contract_expire_view = ContractExpireView.as_view('contract_expire_view')
 contract_options_view = ContractOptionsView.as_view('contract_options_view')
@@ -443,6 +551,11 @@ contract_blueprint.add_url_rule(
 contract_blueprint.add_url_rule(
     '/contracts/<int:id>',
     view_func=contract_one_view,
+    methods=['GET'])
+
+contract_blueprint.add_url_rule(
+    '/contracts/customers/<int:id>',
+    view_func=contract_customers_view,
     methods=['GET'])
 
 contract_blueprint.add_url_rule(

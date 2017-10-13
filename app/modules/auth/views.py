@@ -94,6 +94,10 @@ class LoginView(MethodView):
                         'user_name': user.name,
                         'user_role': user.role
                     }
+
+                    if user.location_id:
+                        response['user_location'] = user.location_id
+
                     return make_response(jsonify(response)), 200
             else:
                 # User does not exist. Therefore, we return an error message

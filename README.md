@@ -1,5 +1,4 @@
 # Surtrade API
-**Surtrades Web Service API**
 
 ## Requirements
 - To create requirements.txt type "pip freeze > requirements.txt"
@@ -13,6 +12,14 @@
 
 ## Local Tunnel
 - type  "lt --port 5000 --subdomain surtrade"
+
+## Linux
+### Processes
+- To see the processes is ps ax|grep gunicorn and to stop gunicorn_django is pkill gunicorn
+### Gunicorn
+- To open the 5000 port type "sudo ufw allow 5000"
+- To run server type "python run.py"
+- To set it up type "gunicorn --bind 0.0.0.0:5000 wsgi:app"
 
 ## PostgreSQL 
 **[Get Started](https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx)**
