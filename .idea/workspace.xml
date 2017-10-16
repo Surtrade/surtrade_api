@@ -49,12 +49,12 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/users/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="266" column="67" lean-forward="true" selection-start-line="266" selection-start-column="67" selection-end-line="266" selection-end-column="67" />
+            <state relative-caret-position="274">
+              <caret line="268" column="37" lean-forward="true" selection-start-line="268" selection-start-column="37" selection-end-line="268" selection-end-column="37" />
               <folding>
                 <element signature="e#437#5819#0" expanded="false" />
                 <element signature="e#5862#8303#0" expanded="false" />
-                <element signature="e#10982#11228#0" expanded="false" />
+                <element signature="e#11035#11281#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -63,8 +63,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/auth/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="97" column="68" lean-forward="true" selection-start-line="97" selection-start-column="68" selection-end-line="97" selection-end-column="68" />
+            <state relative-caret-position="457">
+              <caret line="91" column="43" lean-forward="true" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
               <folding>
                 <element signature="e#238#2421#0" expanded="false" />
               </folding>
@@ -117,7 +117,6 @@
       <find>SQLALCHEMY_DATABASE_URI</find>
       <find>getenv('A</find>
       <find>Contract.customer_id</find>
-      <find>User</find>
       <find>id</find>
       <find>Location</find>
       <find>def connect(</find>
@@ -140,6 +139,7 @@
       <find>surtrade.l</find>
       <find>sutrade.l</find>
       <find>user</find>
+      <find>User</find>
       <find>loc</find>
       <find>contract_customers_view</find>
     </findStrings>
@@ -183,17 +183,17 @@
         <option value="$PROJECT_DIR$/.surtradeenv" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/app/modules/contracts/views.py" />
-        <option value="$PROJECT_DIR$/app/modules/auth/views.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/modules/auth/views.py" />
         <option value="$PROJECT_DIR$/app/modules/users/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1456" />
-    <option name="y" value="-522" />
-    <option name="width" value="1890" />
-    <option name="height" value="1054" />
+    <option name="x" value="1440" />
+    <option name="y" value="-526" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -250,6 +250,13 @@
               <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
@@ -637,6 +644,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -686,21 +694,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/auth/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="97" column="68" lean-forward="true" selection-start-line="97" selection-start-column="68" selection-end-line="97" selection-end-column="68" />
-          <folding>
-            <element signature="e#238#2421#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
           <caret line="90" column="6" lean-forward="false" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/auth/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="91" column="43" lean-forward="true" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
+          <folding>
+            <element signature="e#238#2421#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -722,12 +730,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/users/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="266" column="67" lean-forward="true" selection-start-line="266" selection-start-column="67" selection-end-line="266" selection-end-column="67" />
+        <state relative-caret-position="274">
+          <caret line="268" column="37" lean-forward="true" selection-start-line="268" selection-start-column="37" selection-end-line="268" selection-end-column="37" />
           <folding>
             <element signature="e#437#5819#0" expanded="false" />
             <element signature="e#5862#8303#0" expanded="false" />
-            <element signature="e#10982#11228#0" expanded="false" />
+            <element signature="e#11035#11281#0" expanded="false" />
           </folding>
         </state>
       </provider>

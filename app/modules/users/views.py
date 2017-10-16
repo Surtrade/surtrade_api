@@ -262,21 +262,22 @@ class CustomerRecommendationsView(MethodView):
 
                     # TODO Get recommendations from  AI API
                     recommendations = {
-                        "Electronics":{
-                            "Tv": "Discount on Samsung TVs.",
-                            "Laptops": "New MacBook Pro available."
+                        "electronics":{
+                            "tv": "Discount on Samsung TVs.",
+                            "laptops": "New MacBook Pro available."
                         },
-                        "Clothing": {
-                            "Hoodies": "KLU hoodies 15% off."
+                        "clothing": {
+                            "coodies": "KLU hoodies 15% off."
                         }
                     }
 
                     response = {
                         'Personal': {
-                            'Name': customer.name,
-                            'Color': 'Blue'
+                            'name': customer.name,
+                            'email': customer.email,
+                            'color': 'Blue'
                         },
-                        'Recommendations': recommendations
+                        'recommendations': recommendations
                     }
                 else:
                     response = {
