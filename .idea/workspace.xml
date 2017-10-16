@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a172d256-ff89-4f0f-ad61-9a99861600c8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/auth/views.py" afterPath="$PROJECT_DIR$/app/modules/auth/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/users/views.py" afterPath="$PROJECT_DIR$/app/modules/users/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,14 +46,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/users/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+            <state relative-caret-position="969">
+              <caret line="266" column="67" lean-forward="true" selection-start-line="266" selection-start-column="67" selection-end-line="266" selection-end-column="67" />
               <folding>
                 <element signature="e#437#5819#0" expanded="false" />
                 <element signature="e#5862#8303#0" expanded="false" />
+                <element signature="e#10982#11228#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -73,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="457">
@@ -86,15 +85,15 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/contracts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="183" column="12" lean-forward="false" selection-start-line="183" selection-start-column="12" selection-end-line="183" selection-end-column="12" />
+            <state relative-caret-position="51">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="49" />
               <folding>
                 <element signature="e#207#3668#0" expanded="false" />
                 <element signature="e#3710#6167#0" expanded="false" />
                 <element signature="e#3758#5969#0" expanded="false" />
                 <element signature="e#6002#6167#0" expanded="false" />
+                <element signature="e#6215#9908#0" expanded="false" />
                 <element signature="e#9953#13691#0" expanded="false" />
-                <element signature="e#13736#15912#0" expanded="false" />
                 <element signature="e#15958#18702#0" expanded="false" />
               </folding>
             </state>
@@ -113,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>back_populates</find>
       <find>User.id</find>
       <find>instan</find>
       <find>SQLALCHEMY_DATABASE_URI</find>
@@ -143,6 +141,7 @@
       <find>sutrade.l</find>
       <find>user</find>
       <find>loc</find>
+      <find>contract_customers_view</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app/</dir>
@@ -186,6 +185,7 @@
         <option value="$PROJECT_DIR$/app/modules/contracts/views.py" />
         <option value="$PROJECT_DIR$/app/modules/auth/views.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/modules/users/views.py" />
       </list>
     </option>
   </component>
@@ -244,6 +244,26 @@
               <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="contracts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -650,22 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/contracts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="183" column="12" lean-forward="false" selection-start-line="183" selection-start-column="12" selection-end-line="183" selection-end-column="12" />
-          <folding>
-            <element signature="e#207#3668#0" expanded="false" />
-            <element signature="e#3710#6167#0" expanded="false" />
-            <element signature="e#3758#5969#0" expanded="false" />
-            <element signature="e#6002#6167#0" expanded="false" />
-            <element signature="e#9953#13691#0" expanded="false" />
-            <element signature="e#13736#15912#0" expanded="false" />
-            <element signature="e#15958#18702#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -679,17 +683,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding>
-            <element signature="e#437#5819#0" expanded="false" />
-            <element signature="e#5862#8303#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -708,6 +701,34 @@
         <state relative-caret-position="457">
           <caret line="90" column="6" lean-forward="false" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/contracts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="49" />
+          <folding>
+            <element signature="e#207#3668#0" expanded="false" />
+            <element signature="e#3710#6167#0" expanded="false" />
+            <element signature="e#3758#5969#0" expanded="false" />
+            <element signature="e#6002#6167#0" expanded="false" />
+            <element signature="e#6215#9908#0" expanded="false" />
+            <element signature="e#9953#13691#0" expanded="false" />
+            <element signature="e#15958#18702#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="266" column="67" lean-forward="true" selection-start-line="266" selection-start-column="67" selection-end-line="266" selection-end-column="67" />
+          <folding>
+            <element signature="e#437#5819#0" expanded="false" />
+            <element signature="e#5862#8303#0" expanded="false" />
+            <element signature="e#10982#11228#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

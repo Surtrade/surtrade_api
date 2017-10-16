@@ -222,8 +222,94 @@ class AgentsMobileView(MethodView):
         return make_response(jsonify(response)), status
 
 
+class CustomerRecommendationsView(MethodView):
+    def action(self, method):
+
+        from app.modules.users.models import User
+        from app.modules.users.models import Customer
+        from app.modules.contracts.models import Contract
+
+        try:
+            # Get the access token from the header
+            auth_header = request.headers.get('Authorization')
+            if not auth_header:
+                return {
+                    'message': "Token missing.",
+                    'res-status': 400
+                }
+
+            access_token = auth_header.split(" ")[1]
+
+            # Verify correct token
+            if not access_token or isinstance(User.decode_token(access_token), str):
+                # Attempt to decode the token and get the User ID
+                return {
+                    'message': "Authentication token error.",
+                    'res-status': 511
+                }
+
+            customer_id = request.data['customer_id']
+            location_id = request.data['location_id']
+
+            response = []
+
+            if method == 'POST':
+
+                contract = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).first()
+
+                if contract and contract.check_status():
+                    customer = Customer.query.filter_by(id=customer_id).first()
+
+                    # TODO Get recommendations from  AI API
+                    recommendations = {
+                        "Electronics":{
+                            "Tv": "Discount on Samsung TVs.",
+                            "Laptops": "New MacBook Pro available."
+                        },
+                        "Clothing": {
+                            "Hoodies": "KLU hoodies 15% off."
+                        }
+                    }
+
+                    response = {
+                        'Personal': {
+                            'Name': customer.name,
+                            'Color': 'Blue'
+                        },
+                        'Recommendations': recommendations
+                    }
+                else:
+                    response = {
+                        'message': 'No active Contract between {0} and location {1}'.format(customer_id, location_id),
+                        'res-status': 404
+                    }
+
+            return response
+
+        except Exception as e:
+            # Create a response containing an string error message
+            # Return a server error using the HTTP Error Code 500 (Internal Server Error)
+            response = {
+                'message': str(e),
+                'res-status': 500
+            }
+
+            return response
+
+    def post(self):
+        response = self.action('POST')
+        if 'res-status' in response:
+            status = response['res-status']
+            del response['res-status']
+        else:
+            status = 200
+
+        return make_response(jsonify(response)), status
+
+
 agents_view = AgentsView.as_view('agents_view')
 agents_mobile_view = AgentsMobileView.as_view('agents_mobile_view')
+customer_recommendations_view = CustomerRecommendationsView.as_view('customer_recommendations_view')
 
 # TODO crate a service to return all customers in same location as agent
 # customers_view = CustomersView.as_view('customers_view')
@@ -237,3 +323,8 @@ users_blueprint.add_url_rule(
     '/agents/mobile',
     view_func=agents_mobile_view,
     methods=['GET'])
+
+users_blueprint.add_url_rule(
+    '/customers/recommendations',
+    view_func=customer_recommendations_view,
+    methods=['POST'])
