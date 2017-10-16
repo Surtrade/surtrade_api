@@ -78,7 +78,6 @@ class LoginView(MethodView):
                 # User does not exist. Therefore, we return an error message
                 response = {
                     'message': 'Invalid email/username or password, Please try again'
-
                 }
                 return make_response(jsonify(response)), 401
 
@@ -95,7 +94,7 @@ class LoginView(MethodView):
                         'user_role': user.role
                     }
 
-                    if user.location_id:
+                    if user.role.lower() == "agent":
                         response['user_location'] = user.location_id
 
                     return make_response(jsonify(response)), 200

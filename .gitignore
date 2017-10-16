@@ -86,6 +86,11 @@ celerybeat-schedule
 #.env
 #.surtradeenv
 
+# other
+.idea/
+.idea*
+.idea/workspace.xml
+
 # virtualenv
 .venv
 venv/
