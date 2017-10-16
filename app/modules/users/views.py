@@ -272,7 +272,7 @@ class CustomerRecommendationsView(MethodView):
                     }
 
                     response = {
-                        'Personal': {
+                        'personal': {
                             'name': customer.name,
                             'email': customer.email,
                             'color': 'Blue'
