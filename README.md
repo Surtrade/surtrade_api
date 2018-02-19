@@ -2,8 +2,9 @@
 
 ## 1 Setup
 ### 1.1 Install PostgreSQL Database
-Tutorial MacOS:**[Get Started](https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx)**
-Tutorial Ubuntu 16.04:**[Get Started](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)**
+Tutorial to setup in **[MacOS](https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx)**
+
+Tutorial tp setup in **[Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)**
 
 - Create a role
 - Create a database
@@ -14,7 +15,7 @@ Tutorial Ubuntu 16.04:**[Get Started](https://www.digitalocean.com/community/tut
 - DROP ROLE myrole;
 - CREATE DATABASER mydatabase;
 - DROP DATABASER mydatabase;
-- ALTER ROLE myrole CREATEDB
+- ALTER ROLE myrole CREATEDB;
 
 #### 1.1.2 Access
 ##### 1.1.2.1 Using admin role
@@ -49,7 +50,7 @@ Tutorial Ubuntu 16.04:**[Get Started](https://www.digitalocean.com/community/tut
 
 ### 2.b Linux
 #### 2.b.1 Gunicorn
-Tutorial to setup Flask with Gunicorn:**[Get Started](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04)**
+Tutorial to **[setup Flask with Gunicorn](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04)**
 - To open the 5000 port type "sudo ufw allow 5000"
 - To run server type "python run.py"
 - To set it up type "gunicorn --bind 0.0.0.0:5000 wsgi:app"
