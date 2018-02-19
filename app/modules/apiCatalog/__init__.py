@@ -1,3 +1,5 @@
+# view.py contains
+
 from flask import Blueprint
 
 # This instance of a Blueprint that represents the Contract blueprint

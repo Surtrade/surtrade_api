@@ -24,7 +24,7 @@ class Company(db.Model):
         'Location', order_by='Location.id', cascade="all, delete-orphan", back_populates="company")
 
     __mapper_args__ = {
-        'polymorphic_identity': 'company',
+        'polymorphic_identity': 'company'
     }
 
     def __init__(self, name, code, agents_left):

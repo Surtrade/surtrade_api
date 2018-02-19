@@ -198,11 +198,21 @@ class OneCompanyVew(MethodView):
 companies_view = CompaniesView.as_view('companies_view')
 one_company_view = OneCompanyVew.as_view('one_company_view')
 
+# GET
+# Retrieves all companies
+# POST
+# Saves a new company
 company_blueprint.add_url_rule(
     '/companies',
     view_func=companies_view,
     methods=['GET', 'POST'])
 
+# GET
+# Retrieves an specific company depending on the company id
+# PUT
+# Updates an specific company depending on the company id
+# DELETE
+# Deletes an specific company depending on the company id
 company_blueprint.add_url_rule(
     '/companies/<int:id>',
     view_func=one_company_view,

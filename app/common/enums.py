@@ -8,6 +8,9 @@ class MethodsEnum(Enum):
     PATCH = "PATCH"
     DELETE = "DELETE"
 
+class BeaconTypeEnum(Enum):
+    DOOR = "Door"
+    INNER = "Inner"
 
 class SecurityLevelEnum(Enum):
     NO_CREDENTIALS = 0

@@ -7,12 +7,11 @@ from flask_sqlalchemy import SQLAlchemy
 # local import
 from instance.config import app_config
 
-# initialize sql-alchemy
+# initialize sql-alchemy for interaction with the Database
 db = SQLAlchemy()
 
 
 def create_app(config_name):
-    # print("stuff "+str(app_config[config_name].GOOGLE_API_KEY))
 
     app = FlaskAPI(__name__, instance_relative_config=True)
     app.config.from_object(app_config[config_name])
@@ -20,6 +19,7 @@ def create_app(config_name):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
+    # Registering the Catalog API
     from .modules.apiCatalog import apiCatalog_blueprint
     app.register_blueprint(apiCatalog_blueprint)
 
@@ -27,6 +27,7 @@ def create_app(config_name):
     from .modules.auth import auth_blueprint
     app.register_blueprint(auth_blueprint)
 
+    # Registering all the services provided
     from .modules.locations import location_blueprint
     app.register_blueprint(location_blueprint)
 

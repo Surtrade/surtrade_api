@@ -1,5 +1,6 @@
 from app import db
 from app.modules.companies.models import Company
+from app.common.enums import  BeaconTypeEnum
 
 
 class Location(db.Model):
@@ -27,6 +28,9 @@ class Location(db.Model):
 
     agents = db.relationship('Agent', order_by='Agent.id',
                              cascade="all, delete-orphan", back_populates="location")
+
+    beacons = db.relationship(
+        'Beacon', order_by='Beacon.id', cascade="all, delete-orphan", back_populates="location")
 
     # Many to many contract
     # Refactoring
@@ -60,3 +64,48 @@ class Location(db.Model):
     @staticmethod
     def get_all():
         return Location.query.all()
+
+# Beacon class - Beacons inside a Location
+class Beacon(db.Model):
+    """
+    ***---------------------***
+    Class: Beacon
+    Type: models
+    Updated: 07 Feb 2018
+    Description:
+        This class defines the Beacon table for SQLAlchemy
+    ***---------------------***
+    """
+    __tablename__ = 'beacon'
+
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.Enum(BeaconTypeEnum), nullable=False)
+    # type = db.Column(db.String(255), nullable=False)
+    keyword = db.Column(db.String(255), nullable=False)
+    status = db.Column(db.String(255), nullable=False)
+
+    # Connection to location
+    location_id = db.Column(db.Integer, db.ForeignKey(Location.id))
+    location = db.relationship("Location", back_populates="beacons")
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'beacon'
+    }
+
+    def __init__(self, type, keyword, location_id):
+        """Initialize the Beacon with Type and location."""
+        self.type = type
+        self.keyword = keyword
+        self.status = 'Active'
+        self.location_id = location_id
+
+    def __repr__(self):
+        return "<Beacon: {0} >".format(self.id)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()

@@ -10,7 +10,7 @@ from . import users_blueprint
 
 google_api_key = config.Config.GOOGLE_API_KEY
 
-gmaps = googlemaps.Client(key=google_api_key)
+# gmaps = googlemaps.Client(key=google_api_key)
 
 
 # inactive class
@@ -172,8 +172,7 @@ class AgentsMobileView(MethodView):
 
                 location_id = Location.query.filter_by(address='mobile').first().id
 
-                agents = Agent.query.filter_by(
-                    location_id=location_id).all()
+                agents = Agent.query.filter_by(location_id=location_id).all()
 
                 if agents:
                     for agent in agents:
@@ -320,11 +319,15 @@ customer_recommendations_view = CustomerRecommendationsView.as_view('customer_re
 #     view_func=agents_view,
 #     methods=['GET'])
 
+# GET
+# Retrieves all Agents with mobile location
 users_blueprint.add_url_rule(
     '/agents/mobile',
     view_func=agents_mobile_view,
     methods=['GET'])
 
+# POST
+# Retrieves recommendations for a customer with active contract
 users_blueprint.add_url_rule(
     '/customers/recommendations',
     view_func=customer_recommendations_view,

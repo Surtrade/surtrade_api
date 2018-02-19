@@ -4,7 +4,7 @@ from flask import make_response, request, jsonify
 from flask.views import MethodView
 
 import instance.config as config
-from app.modules.locations.models import Location
+from app.modules.locations.models import Location, Beacon
 from . import location_blueprint
 
 google_api_key = config.Config.GOOGLE_API_KEY
@@ -64,7 +64,8 @@ class LocationsView(MethodView):
                                 'id': location.id,
                                 'name': location.name,
                                 'address': location.address,
-                                'geolocation': location.geolocation
+                                'geolocation': location.geolocation,
+                                'beacons': location.beacons
                             }
                             response.append(obj)
                     else:
@@ -72,19 +73,22 @@ class LocationsView(MethodView):
                             'id': location.id,
                             'name': location.name,
                             'address': location.address,
-                            'geolocation': location.geolocation
+                            'geolocation': location.geolocation,
+                            'beacons': location.beacons
                         }
                         response.append(obj)
 
             elif method == 'POST':
-
+                print("Test")
                 # Query to see if the user already exists
                 post_data = request.data
                 # Register the location
                 name = post_data['name']
                 address = post_data['address']
+
                 location = Location.query.filter_by(name=name).first()
                 company_id = post_data['company_id']
+                # beacons = post_data['beacons']
 
                 if location:
                     return {
@@ -199,6 +203,7 @@ class OneLocationVew(MethodView):
                     'name': location.name,
                     'address': location.address,
                     'geolocation': location.geolocation,
+                    'beacons': location.beacons,
                     'status': 200
                 }
             elif method == "DELETE":
@@ -211,10 +216,11 @@ class OneLocationVew(MethodView):
                 location.name = str(request.data.get('name', ''))
                 address = str(request.data.get(
                     'address', '').encode('utf-8'))
-                # Geocoding an address
+                # Geocoding an address using gmaps service
                 geocode_result = gmaps.geocode(address)
                 location.address = geocode_result[0]['formatted_address']
                 location.geolocation = geocode_result[0]['geometry']
+                location.beacons = request.data.get('beacons','')
                 location.save()
 
                 response = {
@@ -222,6 +228,7 @@ class OneLocationVew(MethodView):
                     'name': location.name,
                     'address': location.address,
                     'geolocation': location.geolocation,
+                    'beacons' : location.beacons,
                     'status': 200
                 }
 
@@ -260,15 +267,127 @@ class OneLocationVew(MethodView):
         return make_response(jsonify(response)), status
 
 
+class BeaconsView(MethodView):
+    def action(self, method, id):
+
+        print("In beacons")
+        from app.modules.users.models import User
+
+        try:
+            # Get the access token from the header
+            auth_header = request.headers.get('Authorization')
+            if not auth_header:
+                return {
+                    'message': "Token missing.",
+                    'status': 400
+                }
+            access_token = auth_header.split(" ")[1]
+
+            if not access_token or isinstance(User.decode_token(access_token), str):
+                # Attempt to decode the token and get the User ID
+                return {
+                    'message': "Authentication token error.",
+                    'status': 511
+                }
+
+            response = []
+
+            if method == "GET":
+                for beacon in Beacon.query.filter_by(location_id=id).all():
+                    obj = {
+                        'id': beacon.id,
+                        'type': beacon.type,
+                        'keyword': beacon.keyword,
+                        'status': beacon.status
+                    }
+                    response.append(obj)
+
+            elif method == 'POST':
+                post_data = request.data
+                type = post_data['type']
+                keyword = post_data['keyword']
+
+                beacon = Beacon(
+                    type=type, keyword=keyword, location_id=id)
+
+                beacon.save()
+
+                beacons = []
+                for beacon in Beacon.query.filter_by(location_id=id).all():
+                    obj = {
+                        'id': beacon.id,
+                        'type': beacon.type,
+                        'keyword': beacon.keyword,
+                        'status': beacon.status
+                    }
+                    beacons.append(obj)
+
+                response = {
+                    'message': 'You registered Beacon ''{0}'' successfully.'.format(beacon.keyword),
+                    'beacons': beacons,
+                    'status': 201
+                }
+
+            return response
+
+        except Exception as e:
+            # Create a response containing an string error message
+            return {
+                'message': str(e),
+                'status': 500
+            }
+
+    def get(self, id):
+        response = self.action('GET', id)
+        if 'status' in response:
+            status = response['status']
+            del response['status']
+        else:
+            status = 200
+
+        return make_response(jsonify(response)), status
+
+    def post(self, id):
+        response = self.action('POST', id)
+        if 'status' in response:
+            status = response['status']
+            del response['status']
+        else:
+            status = 200
+
+        return make_response(jsonify(response)), status
+
+
 locations_view = LocationsView.as_view('locations_view')
 one_location_view = OneLocationVew.as_view('one_location_view')
+beacons_view = BeaconsView.as_view('beacons_view')
 
+# GET
+# Retrieves all locations that are within coordinates, if coordiantes are not provided then all locations are shown
+# Parameters: lat and lng are optional, ?& parameters
+# POST
+# Saves a new location if not already exists
 location_blueprint.add_url_rule(
     '/locations',
     view_func=locations_view,
     methods=['GET', 'POST'])
 
+# GET
+# Retrieves the location acording to the Location id
+# PUT
+# Updates the location acording to the Location id
+# DELETE
+# Deletes the location acording to the Location id
 location_blueprint.add_url_rule(
     '/locations/<int:id>',
     view_func=one_location_view,
     methods=['GET', 'PUT', 'DELETE'])
+
+# GET
+# Retrieves all beacons of a Location
+# POST
+# Adds a Beacon to a Location
+location_blueprint.add_url_rule(
+    '/beacons/<int:id>',
+    view_func=beacons_view,
+    methods=['GET', 'POST'])

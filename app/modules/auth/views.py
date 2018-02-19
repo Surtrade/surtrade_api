@@ -64,16 +64,15 @@ class RegistrationView(MethodView):
 class LoginView(MethodView):
     """This class-based view handles user login and access token generation."""
 
+    # POST calls
     def post(self):
         """Handle POST request for this view. Url ---> /auth/login"""
         try:
             # Get the user object using their email/username (unique to every user)
             if 'email' in request.data:
-                user = User.query.filter_by(
-                    email=request.data['email']).first()
+                user = User.query.filter_by(email=request.data['email']).first()
             elif 'username' in request.data:
-                user = User.query.filter_by(
-                    username=request.data['username']).first()
+                user = User.query.filter_by(username=request.data['username']).first()
             else:
                 # User does not exist. Therefore, we return an error message
                 response = {
@@ -118,14 +117,16 @@ registration_view = RegistrationView.as_view('register_view')
 login_view = LoginView.as_view('login_view')
 
 # Define the rule for the registration url --->  /auth/register
-# Then add the rule to the blueprint
+# POST
+# Registers a new user, could be Agent or Customer
 auth_blueprint.add_url_rule(
     '/auth/register',
     view_func=registration_view,
     methods=['POST'])
 
 # Define the rule for the registration url --->  /auth/login
-# Then add the rule to the blueprint
+# POST
+# Authenticates an User and creates a token
 auth_blueprint.add_url_rule(
     '/auth/login',
     view_func=login_view,

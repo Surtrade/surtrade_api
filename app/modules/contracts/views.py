@@ -41,15 +41,10 @@ class ContractView(MethodView):
                 location_id = request.data['location_id']
                 auto_authorize = request.data['auto_authorize']
                 expire = request.data['expire']
-                print("expire in mins: "+ str(expire))
                 options = request.data['options']
-
-                print("options: "+ str(options))
 
                 from datetime import datetime, timedelta
                 expire = datetime.utcnow() + timedelta(minutes=int(expire))
-                print("Expire in date: "+str(expire))
-                print("current time: "+str(datetime.utcnow()))
 
                 # Refactoring
                 contract = Contract.query.filter_by(customer_id=customer_id, location_id=location_id).first()
@@ -126,22 +121,17 @@ class ContractOneView(MethodView):
 
             response = {}
 
-            print("Customer: "+str(customer_id))
-            print("Location: "+str(location_id))
-
             contract = Contract.query.filter_by(location_id=location_id, customer_id=customer_id).first()
-            print("ttt")
 
             if not contract or not contract.check_status():
-                print("Nooooo")
                 return {
                     'message': "No active contract",
                     'res-status': 404
+                #     Area of improvement
+                #     Could return a 200 status
                 }
 
-            print("meth: "+method)
             if method == "GET":
-                print("asdfgghhhhhhhh")
 
                 response = {
                     'customer_id': contract.customer_id,
@@ -153,9 +143,6 @@ class ContractOneView(MethodView):
                     'res-status': 200
                 }
 
-            print("response: "+str(response))
-
-            print("asdffgg")
             return response
 
         except Exception as e:
@@ -223,12 +210,9 @@ class ContractCustomersView(MethodView):
 
             from app.modules.users.models import Customer
 
+            # Gathers the information of all the customers with an active contract by location
             for contract in contracts:
-                # print("b contract expire:"+str(contract.expire))
-                # print("b contract status:"+ str(contract.status))
                 if contract.check_status():
-                    # print("a contract expire:" +str(contract.expire))
-                    # print("a contract status:" + str(contract.status))
 
                     customer = Customer.query.filter_by(id=contract.customer_id).first()
                     obj = {
@@ -243,6 +227,8 @@ class ContractCustomersView(MethodView):
                 response = {
                     'message': 'No active Contracts found.',
                     'res-status': 404
+                #     Area of improvement
+                #     Could return a 200 status
                 }
 
             return response
@@ -348,6 +334,8 @@ class ContractActiveView(MethodView):
                 response = {
                     'message': 'No active Contracts found.',
                     'res-status': 404
+                #     Area of improvement
+                #     Could return a 200 status
                 }
 
             return response
@@ -425,6 +413,8 @@ class ContractExpireView(MethodView):
                     response = {
                         'message': 'No active Contract between {0} and location {1}'.format(customer_id, location_id),
                         'res-status': 404
+                    #     Area of improvement
+                    #     Could return a 200 status
                     }
 
             return response
@@ -485,6 +475,8 @@ class ContractOptionsView(MethodView):
                 return {
                         'message': 'No active Contract between {0} and location {1}'.format(customer_id, location_id),
                         'res-status': 404
+                #     Area of improvement
+                #     Could return a 200 status
                     }
 
             if method == 'POST':
@@ -543,31 +535,49 @@ contract_active_view = ContractActiveView.as_view('contract_active_view')
 contract_expire_view = ContractExpireView.as_view('contract_expire_view')
 contract_options_view = ContractOptionsView.as_view('contract_options_view')
 
+# POST
+# Creates a new contract or updates the status of exiting one to Active
 contract_blueprint.add_url_rule(
     '/contracts',
     view_func=contract_view,
     methods=['POST'])
 
+# GET
+# Retrieves a contract
+# Parameters: Location id (from adress) and Customer id (from token)
 contract_blueprint.add_url_rule(
     '/contracts/<int:id>',
     view_func=contract_one_view,
     methods=['GET'])
 
+# GET
+# Retrieves all customers with an active contract in a certain location
+# Parameters: Location id
 contract_blueprint.add_url_rule(
     '/contracts/customers/<int:id>',
     view_func=contract_customers_view,
     methods=['GET'])
 
+# GET
+# Retreives all active contracts
+# POST
+# Retreives all active contracts by Customer id and/or Location id
 contract_blueprint.add_url_rule(
     '/contracts/active',
     view_func=contract_active_view,
     methods=['POST', 'GET'])
 
+# Post
+# Expires a contract between a Customer and a Location
 contract_blueprint.add_url_rule(
     '/contracts/expire',
     view_func=contract_expire_view,
     methods=['POST'])
 
+# POST
+# Retreives the options of a contract between a Customer and a Location
+# PATCH
+# Updates the options of a contract between a Customer and a Location
 contract_blueprint.add_url_rule(
     '/contracts/options',
     view_func=contract_options_view,

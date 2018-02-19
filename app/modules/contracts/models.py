@@ -64,23 +64,16 @@ class Contract(db.Model):
     # This method verifies the status of a contract
     # if necessary, it expires it.
     def check_status(self):
-        print("Checking status.. ")
         # if status is false then it is directly returned
         if not self.status:
             return self.status
 
-        print(".. it was true")
-
         options = self.options
-        # print("options expire_method 1: " + str(options.expire_method))
-        print("options expire_method type: " + str(type(options)))
-        print("options expire_method 2: " + str(options['expire_method']))
 
         # Verify Contract Options
         if options:
             print("options: " + str(options))
             if options['expire_method'] == 'time':
-                print("expire "+ str(self.expire))
                 if self.expire < datetime.utcnow():
                     print("expiring the contract because options expire method is time")
                     self.status = False
