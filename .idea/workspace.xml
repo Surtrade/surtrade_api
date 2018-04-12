@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a172d256-ff89-4f0f-ad61-9a99861600c8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/app/modules/locations/models.py" afterPath="$PROJECT_DIR$/app/modules/locations/models.py" />
       <change beforePath="$PROJECT_DIR$/app/modules/locations/views.py" afterPath="$PROJECT_DIR$/app/modules/locations/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="81" column="56" lean-forward="false" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="56" />
+            <state relative-caret-position="430">
+              <caret line="85" column="53" lean-forward="true" selection-start-line="85" selection-start-column="53" selection-end-line="85" selection-end-column="53" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -48,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="433" column="43" lean-forward="false" selection-start-line="433" selection-start-column="43" selection-end-line="433" selection-end-column="43" />
+            <state relative-caret-position="1170">
+              <caret line="327" column="44" lean-forward="true" selection-start-line="327" selection-start-column="44" selection-end-line="327" selection-end-column="44" />
               <folding>
                 <element signature="e#21#38#0" expanded="true" />
                 <element signature="e#383#6026#0" expanded="false" />
@@ -62,9 +63,9 @@
                 <element signature="e#6067#9487#0" expanded="false" />
                 <element signature="e#7474#7649#0" expanded="false" />
                 <element signature="e#7700#8525#0" expanded="false" />
-                <element signature="e#9533#12870#0" expanded="false" />
-                <element signature="e#12361#12598#0" expanded="false" />
-                <element signature="e#12632#12870#0" expanded="false" />
+                <element signature="e#12322#12559#0" expanded="false" />
+                <element signature="e#12593#12831#0" expanded="false" />
+                <element signature="e#12869#14688#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -82,7 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>def connect(</find>
       <find>datetime</find>
       <find>mapper</find>
       <find>backref</find>
@@ -112,6 +112,7 @@
       <find>.sur</find>
       <find>type</find>
       <find>BeaconRoleEnum</find>
+      <find>viewv</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app/</dir>
@@ -154,8 +155,8 @@
         <option value="$PROJECT_DIR$/app/modules/companies/models.py" />
         <option value="$PROJECT_DIR$/app/common/enums.py" />
         <option value="$PROJECT_DIR$/.surtradeenv" />
-        <option value="$PROJECT_DIR$/app/modules/locations/models.py" />
         <option value="$PROJECT_DIR$/app/modules/locations/views.py" />
+        <option value="$PROJECT_DIR$/app/modules/locations/models.py" />
       </list>
     </option>
   </component>
@@ -656,20 +657,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="81" column="56" lean-forward="false" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="433" column="43" lean-forward="false" selection-start-line="433" selection-start-column="43" selection-end-line="433" selection-end-column="43" />
+        <state relative-caret-position="1170">
+          <caret line="327" column="44" lean-forward="true" selection-start-line="327" selection-start-column="44" selection-end-line="327" selection-end-column="44" />
           <folding>
             <element signature="e#21#38#0" expanded="true" />
             <element signature="e#383#6026#0" expanded="false" />
@@ -679,9 +670,19 @@
             <element signature="e#6067#9487#0" expanded="false" />
             <element signature="e#7474#7649#0" expanded="false" />
             <element signature="e#7700#8525#0" expanded="false" />
-            <element signature="e#9533#12870#0" expanded="false" />
-            <element signature="e#12361#12598#0" expanded="false" />
-            <element signature="e#12632#12870#0" expanded="false" />
+            <element signature="e#12322#12559#0" expanded="false" />
+            <element signature="e#12593#12831#0" expanded="false" />
+            <element signature="e#12869#14688#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="85" column="53" lean-forward="true" selection-start-line="85" selection-start-column="53" selection-end-line="85" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

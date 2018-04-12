@@ -332,7 +332,7 @@ class BeaconsLocationView(MethodView):
                     beacons.append(obj)
 
                 response = {
-                    'message': 'You registered Beacon ''{0}'' successfully.'.format(beacons[0].identificator),
+                    'message': 'You registered successfully a Beacon.',
                     'beacons': beacons,
                     'status': 201
                 }

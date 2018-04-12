@@ -81,10 +81,10 @@ class Beacon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # role = db.Column(db.Enum(BeaconRoleEnum), nullable=False)
     role = db.Column(db.String(255), nullable=False)
-    identificator = db.Column(db.String(255), nullable=False)
+    identificator = db.Column(db.String(255), nullable=False, unique=True)
     major = db.Column(db.String(255), nullable=False)
     minor = db.Column(db.String(255), nullable=False)
-    name = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(255), nullable=True)
     status = db.Column(db.String(255), nullable=False)
 
     # Connection to location
