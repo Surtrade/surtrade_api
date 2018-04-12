@@ -1,6 +1,6 @@
 from app import db
 from app.modules.companies.models import Company
-from app.common.enums import  BeaconTypeEnum
+from app.common.enums import BeaconRoleEnum
 
 
 class Location(db.Model):
@@ -79,7 +79,7 @@ class Beacon(db.Model):
     __tablename__ = 'beacon'
 
     id = db.Column(db.Integer, primary_key=True)
-    # role = db.Column(db.Enum(BeaconTypeEnum), nullable=False)
+    # role = db.Column(db.Enum(BeaconRoleEnum), nullable=False)
     role = db.Column(db.String(255), nullable=False)
     identificator = db.Column(db.String(255), nullable=False)
     major = db.Column(db.String(255), nullable=False)
