@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a172d256-ff89-4f0f-ad61-9a99861600c8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/.surtradeenv" afterPath="$PROJECT_DIR$/.surtradeenv" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
       <change beforePath="$PROJECT_DIR$/app/common/enums.py" afterPath="$PROJECT_DIR$/app/common/enums.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/apiCatalog/__init__.py" afterPath="$PROJECT_DIR$/app/modules/apiCatalog/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/auth/views.py" afterPath="$PROJECT_DIR$/app/modules/auth/views.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/companies/models.py" afterPath="$PROJECT_DIR$/app/modules/companies/models.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/companies/views.py" afterPath="$PROJECT_DIR$/app/modules/companies/views.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/contracts/models.py" afterPath="$PROJECT_DIR$/app/modules/contracts/models.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/contracts/views.py" afterPath="$PROJECT_DIR$/app/modules/contracts/views.py" />
       <change beforePath="$PROJECT_DIR$/app/modules/locations/models.py" afterPath="$PROJECT_DIR$/app/modules/locations/models.py" />
       <change beforePath="$PROJECT_DIR$/app/modules/locations/views.py" afterPath="$PROJECT_DIR$/app/modules/locations/views.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/users/views.py" afterPath="$PROJECT_DIR$/app/modules/users/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,12 +19,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="481">
-                <caret line="37" column="50" lean-forward="false" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+              <first_editor relative-caret-position="316">
+                <caret line="45" column="50" lean-forward="false" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -40,11 +32,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".surtradeenv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.surtradeenv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1305">
+              <caret line="87" column="13" lean-forward="false" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+            <state relative-caret-position="534">
+              <caret line="103" column="24" lean-forward="false" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -55,14 +77,20 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="294" column="31" lean-forward="true" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
+            <state relative-caret-position="165">
+              <caret line="266" column="55" lean-forward="true" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
               <folding>
                 <element signature="e#383#6026#0" expanded="false" />
                 <element signature="e#3089#5272#0" expanded="false" />
+                <element signature="e#5529#5762#0" expanded="false" />
+                <element signature="e#5792#6026#0" expanded="false" />
                 <element signature="e#6067#9487#0" expanded="false" />
                 <element signature="e#7474#7649#0" expanded="false" />
                 <element signature="e#7700#8525#0" expanded="false" />
+                <element signature="e#9533#12791#0" expanded="false" />
+                <element signature="e#12282#12519#0" expanded="false" />
+                <element signature="e#12553#12791#0" expanded="false" />
+                <element signature="e#12829#14652#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -80,7 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>id</find>
       <find>Location</find>
       <find>def connect(</find>
       <find>datetime</find>
@@ -110,6 +137,7 @@
       <find>Company</find>
       <find>User</find>
       <find>beac</find>
+      <find>.sur</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app/</dir>
@@ -150,16 +178,15 @@
         <option value="$PROJECT_DIR$/app/modules/companies/views.py" />
         <option value="$PROJECT_DIR$/app/modules/auth/views.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/app/common/enums.py" />
         <option value="$PROJECT_DIR$/app/modules/companies/models.py" />
-        <option value="$PROJECT_DIR$/app/modules/locations/views.py" />
+        <option value="$PROJECT_DIR$/app/common/enums.py" />
         <option value="$PROJECT_DIR$/app/modules/locations/models.py" />
+        <option value="$PROJECT_DIR$/app/modules/locations/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1440" />
-    <option name="y" value="-432" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="33" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -200,6 +227,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -217,6 +245,12 @@
               <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -226,18 +260,10 @@
               <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="locations" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="surtrade_api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="surtrade_api" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,7 +311,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-432" width="1440" height="877" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15277778" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -313,7 +339,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -454,13 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="90" column="6" lean-forward="false" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -517,20 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.surtradeenv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="64" lean-forward="false" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/instance/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -549,14 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
           <caret line="570" column="54" lean-forward="true" selection-start-line="570" selection-start-column="54" selection-end-line="570" selection-end-column="54" />
-          <folding>
-            <element signature="e#207#3446#0" expanded="false" />
-            <element signature="e#3488#5728#0" expanded="false" />
-            <element signature="e#5776#9374#0" expanded="false" />
-            <element signature="e#9419#13247#0" expanded="false" />
-            <element signature="e#13292#15566#0" expanded="false" />
-            <element signature="e#15612#18446#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -564,12 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding>
-            <element signature="e#439#5821#0" expanded="false" />
-            <element signature="e#5864#8284#0" expanded="false" />
-            <element signature="e#8338#11262#0" expanded="false" />
-            <element signature="e#11016#11262#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -577,15 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="40" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/common/enums.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -593,10 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="128" column="43" lean-forward="false" selection-start-line="128" selection-start-column="43" selection-end-line="128" selection-end-column="43" />
-          <folding>
-            <element signature="e#238#2421#0" expanded="false" />
-            <element signature="e#2457#4738#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -604,17 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="388" column="37" lean-forward="false" selection-start-line="388" selection-start-column="37" selection-end-line="388" selection-end-column="37" />
-          <folding>
-            <element signature="e#245#3812#0" expanded="false" />
-            <element signature="e#1067#1970#0" expanded="false" />
-            <element signature="e#2024#3016#0" expanded="false" />
-            <element signature="e#3896#9731#0" expanded="false" />
-            <element signature="e#4012#9241#0" expanded="false" />
-            <element signature="e#9774#13640#0" expanded="false" />
-            <element signature="e#10879#11423#0" expanded="false" />
-            <element signature="e#11477#11649#0" expanded="false" />
-            <element signature="e#11700#12678#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -622,29 +589,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="29" column="43" lean-forward="false" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="481">
-            <caret line="37" column="50" lean-forward="false" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
@@ -654,10 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-403">
           <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="65" />
-          <folding>
-            <element signature="e#3570#4457#0" expanded="false" />
-            <element signature="e#4520#5555#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -665,10 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
           <caret line="36" column="16" lean-forward="true" selection-start-line="36" selection-start-column="16" selection-end-line="43" selection-end-column="40" />
-          <folding>
-            <element signature="e#1403#2237#0" expanded="false" />
-            <element signature="e#3031#6043#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,7 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,7 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,31 +631,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
+    <entry file="file://$PROJECT_DIR$/.surtradeenv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="294" column="31" lean-forward="true" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
-          <folding>
-            <element signature="e#383#6026#0" expanded="false" />
-            <element signature="e#3089#5272#0" expanded="false" />
-            <element signature="e#6067#9487#0" expanded="false" />
-            <element signature="e#7474#7649#0" expanded="false" />
-            <element signature="e#7700#8525#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="87" column="13" lean-forward="false" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/common/enums.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+        <state relative-caret-position="534">
+          <caret line="103" column="24" lean-forward="false" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="24" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="266" column="55" lean-forward="true" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
+          <folding>
+            <element signature="e#383#6026#0" expanded="false" />
+            <element signature="e#3089#5272#0" expanded="false" />
+            <element signature="e#5529#5762#0" expanded="false" />
+            <element signature="e#5792#6026#0" expanded="false" />
+            <element signature="e#6067#9487#0" expanded="false" />
+            <element signature="e#7474#7649#0" expanded="false" />
+            <element signature="e#7700#8525#0" expanded="false" />
+            <element signature="e#9533#12791#0" expanded="false" />
+            <element signature="e#12282#12519#0" expanded="false" />
+            <element signature="e#12553#12791#0" expanded="false" />
+            <element signature="e#12829#14652#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="316">
+            <caret line="45" column="50" lean-forward="false" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

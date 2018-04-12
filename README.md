@@ -3,7 +3,6 @@
 ## 1 Setup
 ### 1.1 Install PostgreSQL Database
 Tutorial to setup in **[MacOS](https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx)**
-
 Tutorial tp setup in **[Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)**
 
 - Create a role
@@ -13,9 +12,10 @@ Tutorial tp setup in **[Ubuntu 16.04](https://www.digitalocean.com/community/tut
 #### 1.1.1 CREATE / DROP / ALTER
 - CREATE ROLE myrole WITH LOGIN PASSWORD 'quoted password';
 - DROP ROLE myrole;
-- CREATE DATABASER mydatabase;
-- DROP DATABASER mydatabase;
 - ALTER ROLE myrole CREATEDB;
+- CREATE DATABASE mydatabase;
+- DROP DATABASE mydatabase;
+
 
 #### 1.1.2 Access
 ##### 1.1.2.1 Using admin role
@@ -25,6 +25,9 @@ Tutorial tp setup in **[Ubuntu 16.04](https://www.digitalocean.com/community/tut
 - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
 - GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO myuser;
 - GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO myuser;
+
+##### 1.1.2.3 Change pg_hba.conf in Ubuntu
+**[Example](https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge)**
 
 ### 1.2 Code download
 - Download from git **[repository](https://github.com/Surtrade/surtrade_api)**

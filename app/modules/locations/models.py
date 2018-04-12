@@ -79,9 +79,12 @@ class Beacon(db.Model):
     __tablename__ = 'beacon'
 
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.Enum(BeaconTypeEnum), nullable=False)
-    # type = db.Column(db.String(255), nullable=False)
-    keyword = db.Column(db.String(255), nullable=False)
+    # role = db.Column(db.Enum(BeaconTypeEnum), nullable=False)
+    role = db.Column(db.String(255), nullable=False)
+    identificator = db.Column(db.String(255), nullable=False)
+    major = db.Column(db.String(255), nullable=False)
+    minor = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(255), nullable=False)
     status = db.Column(db.String(255), nullable=False)
 
     # Connection to location
@@ -92,15 +95,18 @@ class Beacon(db.Model):
         'polymorphic_identity': 'beacon'
     }
 
-    def __init__(self, type, keyword, location_id):
+    def __init__(self, major, minor, location_id, role="store", name="beacon"):
         """Initialize the Beacon with Type and location."""
-        self.type = type
-        self.keyword = keyword
-        self.status = 'Active'
+        self.major = major
+        self.minor = minor
+        self.identificator = str(major)+str(minor)
+        self.status = 'active'
         self.location_id = location_id
+        self.role = role
+        self.name = name
 
     def __repr__(self):
-        return "<Beacon: {0} >".format(self.id)
+        return "<Beacon: {0} >".format(self.identificator)
 
     def save(self):
         db.session.add(self)
