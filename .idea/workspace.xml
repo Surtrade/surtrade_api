@@ -51,11 +51,12 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="370" column="27" lean-forward="false" selection-start-line="370" selection-start-column="27" selection-end-line="370" selection-end-column="27" />
+            <state relative-caret-position="91">
+              <caret line="433" column="43" lean-forward="false" selection-start-line="433" selection-start-column="43" selection-end-line="433" selection-end-column="43" />
               <folding>
                 <element signature="e#21#38#0" expanded="true" />
                 <element signature="e#383#6026#0" expanded="false" />
+                <element signature="e#3089#5272#0" expanded="false" />
                 <element signature="e#5529#5762#0" expanded="false" />
                 <element signature="e#5792#6026#0" expanded="false" />
                 <element signature="e#6067#9487#0" expanded="false" />
@@ -667,11 +668,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="370" column="27" lean-forward="false" selection-start-line="370" selection-start-column="27" selection-end-line="370" selection-end-column="27" />
+        <state relative-caret-position="91">
+          <caret line="433" column="43" lean-forward="false" selection-start-line="433" selection-start-column="43" selection-end-line="433" selection-end-column="43" />
           <folding>
             <element signature="e#21#38#0" expanded="true" />
             <element signature="e#383#6026#0" expanded="false" />
+            <element signature="e#3089#5272#0" expanded="false" />
             <element signature="e#5529#5762#0" expanded="false" />
             <element signature="e#5792#6026#0" expanded="false" />
             <element signature="e#6067#9487#0" expanded="false" />
