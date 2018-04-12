@@ -308,11 +308,12 @@ class BeaconsLocationView(MethodView):
 
             elif method == 'POST':
                 post_data = request.data
-                type = post_data['type']
-                keyword = post_data['keyword']
+                role = post_data['role']
+                name = post_data['name']
+                major = post_data['major']
+                minor = post_data['minor']
 
-                beacon = Beacon(
-                    type=type, keyword=keyword, location_id=id)
+                beacon = Beacon(role=role, name=name, major=major, minor=minor, location_id=id)
 
                 beacon.save()
 

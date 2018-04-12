@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a172d256-ff89-4f0f-ad61-9a99861600c8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.surtradeenv" afterPath="$PROJECT_DIR$/.surtradeenv" />
+      <change beforePath="$PROJECT_DIR$/app/modules/locations/views.py" afterPath="$PROJECT_DIR$/app/modules/locations/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,26 +26,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".surtradeenv" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.surtradeenv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
@@ -59,8 +39,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="103" column="24" lean-forward="false" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="24" />
+            <state relative-caret-position="380">
+              <caret line="97" column="48" lean-forward="false" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="48" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -68,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="266" column="55" lean-forward="true" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
+            <state relative-caret-position="289">
+              <caret line="309" column="40" lean-forward="true" selection-start-line="309" selection-start-column="40" selection-end-line="309" selection-end-column="40" />
               <folding>
                 <element signature="e#383#6026#0" expanded="false" />
                 <element signature="e#3089#5272#0" expanded="false" />
@@ -81,10 +61,9 @@
                 <element signature="e#6067#9487#0" expanded="false" />
                 <element signature="e#7474#7649#0" expanded="false" />
                 <element signature="e#7700#8525#0" expanded="false" />
-                <element signature="e#9533#12791#0" expanded="false" />
-                <element signature="e#12282#12519#0" expanded="false" />
-                <element signature="e#12553#12791#0" expanded="false" />
-                <element signature="e#12829#14652#0" expanded="false" />
+                <element signature="e#12361#12598#0" expanded="false" />
+                <element signature="e#12632#12870#0" expanded="false" />
+                <element signature="e#12908#14731#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -174,8 +153,8 @@
         <option value="$PROJECT_DIR$/app/modules/companies/models.py" />
         <option value="$PROJECT_DIR$/app/common/enums.py" />
         <option value="$PROJECT_DIR$/app/modules/locations/models.py" />
-        <option value="$PROJECT_DIR$/app/modules/locations/views.py" />
         <option value="$PROJECT_DIR$/.surtradeenv" />
+        <option value="$PROJECT_DIR$/app/modules/locations/views.py" />
       </list>
     </option>
   </component>
@@ -628,14 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1305">
@@ -652,33 +623,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
+    <entry file="file://$PROJECT_DIR$/.surtradeenv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="103" column="24" lean-forward="false" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="266" column="55" lean-forward="true" selection-start-line="266" selection-start-column="55" selection-end-line="266" selection-end-column="55" />
-          <folding>
-            <element signature="e#383#6026#0" expanded="false" />
-            <element signature="e#3089#5272#0" expanded="false" />
-            <element signature="e#5529#5762#0" expanded="false" />
-            <element signature="e#5792#6026#0" expanded="false" />
-            <element signature="e#6067#9487#0" expanded="false" />
-            <element signature="e#7474#7649#0" expanded="false" />
-            <element signature="e#7700#8525#0" expanded="false" />
-            <element signature="e#9533#12791#0" expanded="false" />
-            <element signature="e#12282#12519#0" expanded="false" />
-            <element signature="e#12553#12791#0" expanded="false" />
-            <element signature="e#12829#14652#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -698,11 +655,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.surtradeenv">
+    <entry file="file://$PROJECT_DIR$/app/modules/locations/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-          <folding />
+        <state relative-caret-position="380">
+          <caret line="97" column="48" lean-forward="false" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/locations/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="309" column="40" lean-forward="true" selection-start-line="309" selection-start-column="40" selection-end-line="309" selection-end-column="40" />
+          <folding>
+            <element signature="e#383#6026#0" expanded="false" />
+            <element signature="e#3089#5272#0" expanded="false" />
+            <element signature="e#5529#5762#0" expanded="false" />
+            <element signature="e#5792#6026#0" expanded="false" />
+            <element signature="e#6067#9487#0" expanded="false" />
+            <element signature="e#7474#7649#0" expanded="false" />
+            <element signature="e#7700#8525#0" expanded="false" />
+            <element signature="e#12361#12598#0" expanded="false" />
+            <element signature="e#12632#12870#0" expanded="false" />
+            <element signature="e#12908#14731#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
