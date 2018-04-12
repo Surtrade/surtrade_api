@@ -368,7 +368,7 @@ class BeaconsLocationView(MethodView):
 
 
 class BeaconsView(MethodView):
-    def action(self, method, id):
+    def action(self, method):
 
         print("In beacons")
         from app.modules.users.models import User
@@ -431,7 +431,7 @@ class BeaconsView(MethodView):
 locations_view = LocationsView.as_view('locations_view')
 one_location_view = OneLocationVew.as_view('one_location_view')
 beacons_view = BeaconsView.as_view('beacons_view')
-beacons_location_view = BeaconsView.as_view('beacons_location_view')
+beacons_location_view = BeaconsLocationViewView.as_view('beacons_location_view')
 
 # GET
 # Retrieves all locations that are within coordinates, if coordiantes are not provided then all locations are shown
