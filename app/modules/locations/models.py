@@ -85,7 +85,8 @@ class Beacon(db.Model):
     major = db.Column(db.String(255), nullable=False)
     minor = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(255), nullable=True)
-    status = db.Column(db.String(255), nullable=False)
+    active = db.Column(db.Boolean, default=True)
+    keywords = db.Column(db.JSON)
 
     # Connection to location
     location_id = db.Column(db.Integer, db.ForeignKey(Location.id))
@@ -100,7 +101,7 @@ class Beacon(db.Model):
         self.major = major
         self.minor = minor
         self.identificator = str(major)+str(minor)
-        self.status = 'active'
+        # self.active = True # default: True
         self.location_id = location_id
         self.role = role
         self.name = name

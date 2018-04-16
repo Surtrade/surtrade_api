@@ -164,7 +164,7 @@ class LocationsView(MethodView):
         return make_response(jsonify(response)), status
 
 
-class OneLocationVew(MethodView):
+class OneLocationView(MethodView):
     def action(self, method, id):
         from app.modules.users.models import User
 
@@ -301,41 +301,12 @@ class BeaconsLocationView(MethodView):
                         'minor': beacon.minor,
                         'identificator': beacon.identificator,
                         'name': beacon.name,
-                        'status': beacon.status,
+                        'active': beacon.active,
+                        'keywords': beacon.keywords,
                         'location_id':beacon.location_id
                     }
                     response.append(obj)
 
-            elif method == 'POST':
-                post_data = request.data
-                role = post_data['role']
-                name = post_data['name']
-                major = post_data['major']
-                minor = post_data['minor']
-
-                beacon = Beacon(role=role, name=name, major=major, minor=minor, location_id=id)
-
-                beacon.save()
-
-                beacons = []
-                for beacon in Beacon.query.filter_by(location_id=id).all():
-                    obj = {
-                        'id': beacon.id,
-                        'role': beacon.role,
-                        'major': beacon.major,
-                        'minor': beacon.minor,
-                        'identificator': beacon.identificator,
-                        'name': beacon.name,
-                        'status': beacon.status,
-                        'location_id':beacon.location_id
-                    }
-                    beacons.append(obj)
-
-                response = {
-                    'message': 'You registered successfully a Beacon.',
-                    'beacons': beacons,
-                    'status': 201
-                }
 
             return response
 
@@ -401,10 +372,47 @@ class BeaconsView(MethodView):
                         'minor': beacon.minor,
                         'identificator': beacon.identificator,
                         'name': beacon.name,
-                        'status': beacon.status,
+                        'active': beacon.active,
+                        'keywords': beacon.keywords,
                         'location_id':beacon.location_id
                     }
                     response.append(obj)
+
+            elif method == 'POST':
+                post_data = request.data
+                role = post_data['role']
+                name = post_data['name']
+                major = post_data['major']
+                minor = post_data['minor']
+                keywords = post_data['keywords']
+                location_id = post_data['location_id']
+
+                beacon = Beacon(role=role, name=name, major=major, minor=minor, location_id=id)
+                beacon.keywords = keywords
+                beacon.location_id = location_id
+
+                beacon.save()
+
+
+                # beacons = []
+                # for beacon in Beacon.query.filter_by(location_id=id).all():
+                #     obj = {
+                #         'id': beacon.id,
+                #         'role': beacon.role,
+                #         'major': beacon.major,
+                #         'minor': beacon.minor,
+                #         'identificator': beacon.identificator,
+                #         'name': beacon.name,
+                #         'status': beacon.status,
+                #         'location_id':beacon.location_id
+                #     }
+                #     beacons.append(obj)
+
+                response = {
+                    'message': 'You registered successfully Beacon: {} {}'.format(beacon.name, beacon.identificator),
+                    'status': 201
+                }
+
 
             return response
 
@@ -425,12 +433,134 @@ class BeaconsView(MethodView):
 
         return make_response(jsonify(response)), status
 
+    def post(self):
+        response = self.action('POST')
+        if 'status' in response:
+            status = response['status']
+            del response['status']
+        else:
+            status = 200
+
+        return make_response(jsonify(response)), status
+
+
+class OneBeaconView(MethodView):
+    def action(self, method, id):
+        from app.modules.users.models import User
+
+        try:
+            # Get the access token from the header
+            auth_header = request.headers.get('Authorization')
+            if not auth_header:
+                return {
+                    'message': "Token missing.",
+                    'status': 400
+                }
+
+            access_token = auth_header.split(" ")[1]
+
+            # Verify correct token
+            if not access_token or isinstance(User.decode_token(access_token), str):
+                # Attempt to decode the token and get the User ID
+                return {
+                    'message': "Authentication token error.",
+                    'status': 511
+                }
+
+            response = {}
+
+            beacon = Beacon.query.filter_by(id=id).first()
+
+            if not beacon:
+                return {
+                    'message': "Beacon does not exist.",
+                    'status': 401
+                }
+
+            if method == "GET":
+                response = {
+                    'id': beacon.id,
+                    'role': beacon.role,
+                    'major': beacon.major,
+                    'minor': beacon.minor,
+                    'identificator': beacon.identificator,
+                    'name': beacon.name,
+                    'active': beacon.active,
+                    'keywords': beacon.keywords,
+                    'location_id':beacon.location_id,
+                    'status': 200
+                }
+
+            elif method == "DELETE":
+                beacon.delete()
+                response = {
+                    "message": "Beacon {} deleted.".format(beacon.identificator),
+                    'status': 200
+                }
+
+            elif method == "PUT":
+                beacon.name = str(request.data.get('name', ''))
+                beacon.role = str(request.data.get('role', ''))
+                beacon.major = str(request.data.get('major', ''))
+                beacon.minor = str(request.data.get('minor', ''))
+                beacon.active = bool(request.data.get('active', 'True'))
+                beacon.keywords = request.data.get('keywords', '{}')
+                beacon.location_id = str(request.data.get('location_id', ''))
+
+                beacon.save()
+
+                response = {
+                    'id': beacon.id,
+                    'name': beacon.name,
+                    'role': beacon.role,
+                    'major': beacon.major,
+                    'minor' : beacon.minor,
+                    'active': beacon.active,
+                    'keywords': beacon.keywords,
+                    'location_id' : beacon.location_id,
+                    'status': 200
+                }
+
+            return response
+
+        except Exception as e:
+            # Create a response containing an string error message
+            response = {
+                'message': str(e),
+                'status': 500
+            }
+
+            return response
+            # return make_response(jsonify(response)), 500
+
+    def get(self, id):
+        response = self.action('GET', id)
+        status = response['status']
+        del response['status']
+
+        return make_response(jsonify(response)), status
+
+    def delete(self, id):
+        response = self.action('DELETE', id)
+        status = response['status']
+        del response['status']
+
+        return make_response(jsonify(response)), status
+
+    def put(self, id):
+        # return make_response(jsonify({'message': 'Test'})), 200
+        response = self.action('PUT', id)
+        status = response['status']
+        del response['status']
+
+        return make_response(jsonify(response)), status
 
 
 
 locations_view = LocationsView.as_view('locations_view')
-one_location_view = OneLocationVew.as_view('one_location_view')
+one_location_view = OneLocationView.as_view('one_location_view')
 beacons_view = BeaconsView.as_view('beacons_view')
+one_beacon_view = OneBeaconView.as_view('one_beacon_view')
 beacons_location_view = BeaconsLocationView.as_view('beacons_location_view')
 
 # GET
@@ -444,11 +574,11 @@ location_blueprint.add_url_rule(
     methods=['GET', 'POST'])
 
 # GET
-# Retrieves the location acording to the Location id
+# Retrieves the location according to the Location id
 # PUT
-# Updates the location acording to the Location id
+# Updates the location according to the Location id
 # DELETE
-# Deletes the location acording to the Location id
+# Deletes the location according to the Location id
 location_blueprint.add_url_rule(
     '/locations/<int:id>',
     view_func=one_location_view,
@@ -456,16 +586,27 @@ location_blueprint.add_url_rule(
 
 # GET
 # Retrieves all beacons of a Location
-# POST
-# Adds a Beacon to a Location
 location_blueprint.add_url_rule(
     '/beacons/location/<int:id>',
     view_func=beacons_location_view,
-    methods=['GET', 'POST'])
+    methods=['GET'])
 
 # GET
 # Retrieves all beacons
+# POST
+# Adds a Beacon to a Location
 location_blueprint.add_url_rule(
     '/beacons',
     view_func=beacons_view,
-    methods=['GET'])
+    methods=['GET', 'POST'])
+
+# GET
+# Retrieves the location according to the Beacon id
+# PUT
+# Updates the location according to the Beacon id
+# DELETE
+# Deletes the location according to the Beacon id
+location_blueprint.add_url_rule(
+    '/beacons/<int:id>',
+    view_func=one_beacon_view,
+    methods=['GET', 'PUT', 'DELETE'])
