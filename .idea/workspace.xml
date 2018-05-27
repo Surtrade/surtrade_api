@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a172d256-ff89-4f0f-ad61-9a99861600c8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/.surtradeenv" afterPath="$PROJECT_DIR$/.surtradeenv" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/locations/models.py" afterPath="$PROJECT_DIR$/app/modules/locations/models.py" />
-      <change beforePath="$PROJECT_DIR$/app/modules/users/models.py" afterPath="$PROJECT_DIR$/app/modules/users/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,7 +26,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/visits/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="389">
@@ -40,6 +36,16 @@
                 <element signature="e#3126#3359#0" expanded="false" />
                 <element signature="e#3389#3623#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".surtradeenv" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.surtradeenv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="63" lean-forward="true" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,13 +144,13 @@
         <option value="$PROJECT_DIR$/app/modules/companies/models.py" />
         <option value="$PROJECT_DIR$/app/common/enums.py" />
         <option value="$PROJECT_DIR$/app/modules/locations/views.py" />
-        <option value="$PROJECT_DIR$/.surtradeenv" />
         <option value="$PROJECT_DIR$/app/modules/visits/__init__.py" />
         <option value="$PROJECT_DIR$/app/modules/users/models.py" />
         <option value="$PROJECT_DIR$/app/modules/locations/models.py" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
         <option value="$PROJECT_DIR$/app/modules/visits/models.py" />
         <option value="$PROJECT_DIR$/app/modules/visits/views.py" />
+        <option value="$PROJECT_DIR$/.surtradeenv" />
       </list>
     </option>
   </component>
@@ -652,14 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.surtradeenv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="86" lean-forward="false" selection-start-line="6" selection-start-column="86" selection-end-line="6" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-865">
@@ -741,6 +739,14 @@
             <element signature="e#3126#3359#0" expanded="false" />
             <element signature="e#3389#3623#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.surtradeenv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="63" lean-forward="true" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>

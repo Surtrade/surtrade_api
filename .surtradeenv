@@ -1,7 +1,7 @@
 source surtradeenv/bin/activate
 export FLASK_APP="run.py"
 export SECRET="very-long-string-of-random-characters-Security-Handler"
-export APP_SETTINGS="testing"
+export APP_SETTINGS="development"
 export DATABASE_URL="postgresql://surtrade:Surtrade1!@localhost/surtrade_api_db_"
 export DATABASE_URL_DEV="postgresql://surtrade:Surtrade1!@localhost/surtrade_api_db_"
 export DATABASE_URL_TEST="postgresql://surtrade:Surtrade1!@localhost/surtrade_api_db_"
