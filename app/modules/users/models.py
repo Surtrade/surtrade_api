@@ -7,6 +7,8 @@ from flask_bcrypt import Bcrypt
 from app import db
 from app.modules.locations.models import Location
 from app.modules.companies.models import Company
+# from app.modules.visits.models import Visit
+# from app.modules.interests.models import Interest
 
 
 # Parent User Class to be extended to Customer and Agent
@@ -121,6 +123,10 @@ class Customer(User):
     # Refactoring
     # agent = db.relationship("Agent", secondary="contract")
     location = db.relationship("Location", secondary="contract")
+
+    # Reference back to Visit and Interest
+    # visits = db.relationship('Visit', order_by='Visit.id', cascade="all, delete-orphan", back_populates="customer")
+    # interests = db.relationship('Interests', order_by='Interest.id', cascade="all, delete-orphan", back_populates="customer")
 
     __mapper_args__ = {
         'polymorphic_identity': 'customer'

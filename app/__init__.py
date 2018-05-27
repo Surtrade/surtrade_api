@@ -35,6 +35,9 @@ def create_app(config_name):
     from .modules.companies import company_blueprint
     app.register_blueprint(company_blueprint)
 
+    from .modules.visits import visit_blueprint
+    app.register_blueprint(visit_blueprint)
+
     from .modules.contracts import contract_blueprint
     app.register_blueprint(contract_blueprint)
 

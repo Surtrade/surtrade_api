@@ -1,5 +1,7 @@
 from app import db
 from app.modules.companies.models import Company
+# from app.modules.visits.models import Visit
+# from app.modules.interests.models import Interest
 from app.common.enums import BeaconRoleEnum
 
 
@@ -91,6 +93,11 @@ class Beacon(db.Model):
     # Connection to location
     location_id = db.Column(db.Integer, db.ForeignKey(Location.id))
     location = db.relationship("Location", back_populates="beacons")
+
+
+    # Reference back to Visit and Interest
+    # visits = db.relationship('Visit', order_by='Visit.id', cascade="all, delete-orphan", back_populates="customer")
+    # interests = db.relationship('Interests', order_by='Interest.id', cascade="all, delete-orphan", back_populates="customer")
 
     __mapper_args__ = {
         'polymorphic_identity': 'beacon'
