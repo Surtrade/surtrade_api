@@ -1,11 +1,11 @@
 from flask import make_response, request, jsonify
 from flask.views import MethodView
 
-from app.modules.visits.models import Visit
-from app.modules.visits import visit_blueprint
+from app.modules.interests.models import Interest
+from app.modules.interests import interest_blueprint
 
 
-class VisitsView(MethodView):
+class InterestsView(MethodView):
 
     def action(self, method):
 
@@ -32,24 +32,24 @@ class VisitsView(MethodView):
 
             if method == "GET":
 
-                visits = Visit.query.all()
+                interests = Interest.query.all()
 
-                for visit in visits:
+                for interest in interests:
                     obj = {
-                        'id': visit.id,
-                        'customer_id': visit.customer_id,
-                        'beacon': visit.beacon,
-                        'start': visit.start,
-                        'end':visit.end,
-                        'creating': visit.creating,
-                        'active': visit.active,
-                        'keywords': visit.keywords
+                        'id': interest.id,
+                        'customer_id': interest.customer_id,
+                        'beacon': interest.beacon,
+                        'start': interest.start,
+                        'end':interest.end,
+                        'creating': interest.creating,
+                        'active': interest.active,
+                        'keywords': interest.keywords
                     }
                     response.append(obj)
 
             elif method == 'POST':
 
-                # Query to see if the visit already exists
+                # Query to see if the interest already exists
                 post_data = request.data
 
                 customer_id = post_data['customer_id']
@@ -68,20 +68,17 @@ class VisitsView(MethodView):
                 print ("active ",active)
                 print ("keywords ", keywords)
 
+                interest = Interest( customer_id, beacon, start, end)
+                # interest = Interest(customer_id, beacon)
+                print("now interest.start ",interest.start)
+                interest.creating = creating
+                interest.active = active
+                interest.keywords = keywords
 
-
-
-                visit = Visit( customer_id, beacon, start, end)
-                # visit = Visit(customer_id, beacon)
-                print("now visit.start ",visit.start)
-                visit.creating = creating
-                visit.active = active
-                visit.keywords = keywords
-
-                visit.save()
+                interest.save()
 
                 response = {
-                    'message': 'You registered Visit customer ''{0}'' to beacon ''{1}'' successfully.'.format(visit.customer_id, visit.beacon),
+                    'message': 'You registered Interest of customer ''{0}'' to beacon ''{1}'' successfully.'.format(interest.customer_id, interest.beacon),
                     'status': 201
                 }
 
@@ -115,7 +112,7 @@ class VisitsView(MethodView):
         return make_response(jsonify(response)), status
 
 
-class OneVisitView(MethodView):
+class OneInterestView(MethodView):
     def action(self, method, id):
         from app.modules.users.models import User
 
@@ -140,52 +137,52 @@ class OneVisitView(MethodView):
 
             response = {}
 
-            visit = Visit.query.filter_by(id=id).first()
+            interest = Interest.query.filter_by(id=id).first()
 
-            if not visit:
+            if not interest:
                 return {
-                    'message': "Visit does not exist.",
+                    'message': "Interest does not exist.",
                     'status': 401
                 }
 
             if method == "GET":
                 response = {
-                    'id': visit.id,
-                    'customer_id': visit.customer_id,
-                    'beacon': visit.beacon,
-                    'start': visit.start,
-                    'end': visit.end,
-                    'creating': visit.creating,
-                    'active': visit.active,
-                    'keywords': visit.keywords,
+                    'id': interest.id,
+                    'customer_id': interest.customer_id,
+                    'beacon': interest.beacon,
+                    'start': interest.start,
+                    'end': interest.end,
+                    'creating': interest.creating,
+                    'active': interest.active,
+                    'keywords': interest.keywords,
                     'status': 200
                 }
             elif method == "DELETE":
-                visit.delete()
+                interest.delete()
                 response = {
-                    "message": "Visit of customer ''{0}'' to beacon ''{1}'' deleted.".format(visit.customer_id, visit.beacon),
+                    "message": "Interest of customer ''{0}'' to beacon ''{1}'' deleted.".format(interest.customer_id, interest.beacon),
                     'status': 200
                 }
             elif method == "PUT":
-                visit.customer_id = str(request.data.get('customer_id', ''))
-                visit.beacon = str(request.data.get('beacon', ''))
-                visit.start = str(request.data.get('start', ''))
-                visit.end = str(request.data.get('end', ''))
-                visit.creating = str(request.data.get('creating', ''))
-                visit.active = str(request.data.get('active', ''))
-                visit.keywords = str(request.data.get('keywords', ''))
+                interest.customer_id = str(request.data.get('customer_id', ''))
+                interest.beacon = str(request.data.get('beacon', ''))
+                interest.start = str(request.data.get('start', ''))
+                interest.end = str(request.data.get('end', ''))
+                interest.creating = str(request.data.get('creating', ''))
+                interest.active = str(request.data.get('active', ''))
+                interest.keywords = str(request.data.get('keywords', ''))
 
-                visit.save()
+                interest.save()
 
                 response = {
-                    'id': visit.id,
-                    'customer_id': visit.customer_id,
-                    'beacon': visit.beacon,
-                    'start': visit.start,
-                    'end': visit.end,
-                    'creating': visit.creating,
-                    'active': visit.active,
-                    'keywords': visit.keywords,
+                    'id': interest.id,
+                    'customer_id': interest.customer_id,
+                    'beacon': interest.beacon,
+                    'start': interest.start,
+                    'end': interest.end,
+                    'creating': interest.creating,
+                    'active':  interest.active,
+                    'keywords': interest.keywords,
                     'status': 200
                 }
 
@@ -224,25 +221,25 @@ class OneVisitView(MethodView):
         return make_response(jsonify(response)), status
 
 
-visits_view = VisitsView.as_view('visits_view')
-one_visit_view = OneVisitView.as_view('one_visit_view')
+interests_view = InterestsView.as_view('interests_view')
+one_interest_view = OneInterestView.as_view('one_interest_view')
 
 # GET
-# Retrieves all visits
+# Retrieves all interests
 # POST
-# Saves a new visit
-visit_blueprint.add_url_rule(
-    '/visits',
-    view_func=visits_view,
+# Saves a new interest
+interest_blueprint.add_url_rule(
+    '/interests',
+    view_func=interests_view,
     methods=['GET', 'POST'])
 
 # GET
-# Retrieves an specific visit depending on the visit id
+# Retrieves an specific interest depending on the interest id
 # PUT
-# Updates an specific visit depending on the visit id
+# Updates an specific interest depending on the interest id
 # DELETE
-# Deletes an specific visit depending on the visit id
-visit_blueprint.add_url_rule(
-    '/visits/<int:id>',
-    view_func=one_visit_view,
+# Deletes an specific interest depending on the interest id
+interest_blueprint.add_url_rule(
+    '/interests/<int:id>',
+    view_func=one_interest_view,
     methods=['GET', 'PUT', 'DELETE'])

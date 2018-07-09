@@ -38,6 +38,9 @@ def create_app(config_name):
     from .modules.visits import visit_blueprint
     app.register_blueprint(visit_blueprint)
 
+    from .modules.interests import interest_blueprint
+    app.register_blueprint(interest_blueprint)
+
     from .modules.contracts import contract_blueprint
     app.register_blueprint(contract_blueprint)
 
