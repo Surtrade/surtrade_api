@@ -41,6 +41,12 @@ def create_app(config_name):
     from .modules.interests import interest_blueprint
     app.register_blueprint(interest_blueprint)
 
+    from .modules.shelves import shelf_blueprint
+    app.register_blueprint(shelf_blueprint)
+
+    from .modules.shelves import product_blueprint
+    app.register_blueprint(product_blueprint)
+
     from .modules.contracts import contract_blueprint
     app.register_blueprint(contract_blueprint)
 
