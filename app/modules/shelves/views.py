@@ -319,7 +319,8 @@ class ProductsView(MethodView):
                         'code': product.code,
                         'name': product.name,
                         'description': product.description,
-                        'keywords': product.keywords
+                        'keywords': product.keywords,
+                        'image': product.image,
                     }
                     response.append(obj)
 
@@ -332,10 +333,12 @@ class ProductsView(MethodView):
                 name = post_data['name']
                 description = post_data['description']
                 keywords = post_data['keywords']
+                image = post_data['image']
 
                 product = Product(code, name, description)
 
                 product.keywords = keywords
+                product.image = image
 
                 product.save()
 
@@ -414,6 +417,7 @@ class OneProductView(MethodView):
                     'name': product.name,
                     'description': product.description,
                     'keywords': product.keywords,
+                    'image': product.image,
                     'status': 200
                 }
             elif method == "DELETE":
@@ -427,6 +431,7 @@ class OneProductView(MethodView):
                 product.name = str(request.data.get('name', ''))
                 product.description = str(request.data.get('description', ''))
                 product.keywords = str(request.data.get('keywords', ''))
+                product.image = str(request.data.get('image', ''))
 
                 product.save()
 
@@ -436,6 +441,7 @@ class OneProductView(MethodView):
                     'name': product.name,
                     'description': product.description,
                     'keywords': product.keywords,
+                    'image': product.image,
                     'status': 200
                 }
 

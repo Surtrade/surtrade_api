@@ -89,6 +89,7 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=True)
     created_dt = db.Column(db.DateTime)
     keywords = db.Column(db.JSON)
+    image = db.Column(db.String(255), nullable=True)
 
     # Connection to shelf
     # shelf_id = db.Column(db.Integer, db.ForeignKey('shelf.id'), nullable=False)
@@ -103,12 +104,12 @@ class Product(db.Model):
         self.name = name
         self.description = description
         self.created_dt = datetime.utcnow()
-        self.shelf =  []
+        self.shelf = []
 
     def __repr__(self):
         # return "<Product: {0} >".format(self.name)
         # return json.dumps(self.__dict__)
-        return json.dumps({"code":self.code,"name":self.name,"description":self.description, "keywords":self.keywords})
+        return json.dumps({"code":self.code,"name":self.name,"description":self.description, "keywords":self.keywords, "image":self.image})
         # return json.load({"name":self.name,"description":self.description})
         # return jsonify({"name":self.name,"description":self.description})
         # return {"name":self.name,"description":self.description}
