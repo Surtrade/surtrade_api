@@ -39,7 +39,7 @@ class ShelvesView(MethodView):
                 for shelf in shelves:
                     products = []
                     for p in shelf.products:
-                        products.append({"name":p.name,"code":p.code,"description":p.description,"keywords":p.keywords})
+                        products.append({"name":p.name,"code":p.code,"description":p.description,"keywords":p.keywords,"image":p.image})
                     obj = {
                         'id': shelf.id,
                         'code': shelf.code,
@@ -252,7 +252,7 @@ class OneShelfByBeaconView(MethodView):
                 products = []
                 for p in shelf.products:
                     products.append(
-                        {"name": p.name, "code": p.code, "description": p.description, "keywords": p.keywords})
+                        {"name": p.name, "code": p.code, "description": p.description, "keywords": p.keywords, "image":p.image})
                 response = {
                     'id': shelf.id,
                     'code': shelf.code,
@@ -430,7 +430,7 @@ class OneProductView(MethodView):
                 product.code = str(request.data.get('code', ''))
                 product.name = str(request.data.get('name', ''))
                 product.description = str(request.data.get('description', ''))
-                product.keywords = str(request.data.get('keywords', ''))
+                product.keywords = request.data.get('keywords', '')
                 product.image = str(request.data.get('image', ''))
 
                 product.save()

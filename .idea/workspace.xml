@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a172d256-ff89-4f0f-ad61-9a99861600c8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/modules/shelves/models.py" afterPath="$PROJECT_DIR$/app/modules/shelves/models.py" />
       <change beforePath="$PROJECT_DIR$/app/modules/shelves/views.py" afterPath="$PROJECT_DIR$/app/modules/shelves/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,15 +49,14 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/shelves/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="430" column="64" lean-forward="true" selection-start-line="430" selection-start-column="64" selection-end-line="430" selection-end-column="64" />
+            <state relative-caret-position="250">
+              <caret line="254" column="126" lean-forward="false" selection-start-line="254" selection-start-column="126" selection-end-line="254" selection-end-column="126" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
-                <element signature="e#257#3667#0" expanded="false" />
-                <element signature="e#1041#1733#0" expanded="false" />
-                <element signature="e#3706#6873#0" expanded="false" />
-                <element signature="e#6920#9092#0" expanded="false" />
-                <element signature="e#9132#11855#0" expanded="false" />
+                <element signature="e#257#3683#0" expanded="false" />
+                <element signature="e#3722#6889#0" expanded="false" />
+                <element signature="e#9165#11888#0" expanded="false" />
+                <element signature="e#11929#15274#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -539,6 +536,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
           <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -595,6 +595,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="38" column="54" lean-forward="false" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -639,6 +640,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -698,15 +700,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/shelves/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="430" column="64" lean-forward="true" selection-start-line="430" selection-start-column="64" selection-end-line="430" selection-end-column="64" />
+        <state relative-caret-position="250">
+          <caret line="254" column="126" lean-forward="false" selection-start-line="254" selection-start-column="126" selection-end-line="254" selection-end-column="126" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
-            <element signature="e#257#3667#0" expanded="false" />
-            <element signature="e#1041#1733#0" expanded="false" />
-            <element signature="e#3706#6873#0" expanded="false" />
-            <element signature="e#6920#9092#0" expanded="false" />
-            <element signature="e#9132#11855#0" expanded="false" />
+            <element signature="e#257#3683#0" expanded="false" />
+            <element signature="e#3722#6889#0" expanded="false" />
+            <element signature="e#9165#11888#0" expanded="false" />
+            <element signature="e#11929#15274#0" expanded="false" />
           </folding>
         </state>
       </provider>
