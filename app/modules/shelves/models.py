@@ -91,6 +91,7 @@ class Product(db.Model):
     keywords = db.Column(db.JSON)
     image = db.Column(db.String(255), nullable=True)
     video = db.Column(db.String(255), nullable=True)
+    remark = db.Column(db.String(255), nullable=True)
 
     # Connection to shelf
     # shelf_id = db.Column(db.Integer, db.ForeignKey('shelf.id'), nullable=False)
@@ -110,7 +111,7 @@ class Product(db.Model):
     def __repr__(self):
         # return "<Product: {0} >".format(self.name)
         # return json.dumps(self.__dict__)
-        return json.dumps({"code":self.code,"name":self.name,"description":self.description, "keywords":self.keywords, "image":self.image, "video":self.video})
+        return json.dumps({"code":self.code,"name":self.name,"description":self.description, "keywords":self.keywords, "image":self.image, "video":self.video, "remark":self.remark})
         # return json.load({"name":self.name,"description":self.description})
         # return jsonify({"name":self.name,"description":self.description})
         # return {"name":self.name,"description":self.description}

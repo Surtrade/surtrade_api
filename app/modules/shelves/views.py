@@ -39,7 +39,7 @@ class ShelvesView(MethodView):
                 for shelf in shelves:
                     products = []
                     for p in shelf.products:
-                        products.append({"name":p.name,"code":p.code,"description":p.description,"keywords":p.keywords,"image":p.image, "video":p.video})
+                        products.append({"name":p.name,"code":p.code,"description":p.description,"keywords":p.keywords,"image":p.image, "video":p.video, "remark":p.remark})
                     obj = {
                         'id': shelf.id,
                         'code': shelf.code,
@@ -252,7 +252,7 @@ class OneShelfByBeaconView(MethodView):
                 products = []
                 for p in shelf.products:
                     products.append(
-                        {"name": p.name, "code": p.code, "description": p.description, "keywords": p.keywords, "image":p.image, "video":p.video})
+                        {"name": p.name, "code": p.code, "description": p.description, "keywords": p.keywords, "image":p.image, "video":p.video, "remark":p.remark})
                 response = {
                     'id': shelf.id,
                     'code': shelf.code,
@@ -322,6 +322,7 @@ class ProductsView(MethodView):
                         'keywords': product.keywords,
                         'image': product.image,
                         'video': product.video,
+                        'remark': product.remark
                     }
                     response.append(obj)
 
@@ -336,12 +337,14 @@ class ProductsView(MethodView):
                 keywords = post_data['keywords']
                 image = post_data['image']
                 video = post_data['video']
+                remark = post_data['remark']
 
                 product = Product(code, name, description)
 
                 product.keywords = keywords
                 product.image = image
                 product.video = video
+                product.remark = remark
 
                 product.save()
 
@@ -422,6 +425,7 @@ class OneProductView(MethodView):
                     'keywords': product.keywords,
                     'image': product.image,
                     'video': product.video,
+                    'remark': product.remark,
                     'status': 200
                 }
             elif method == "DELETE":
@@ -437,7 +441,7 @@ class OneProductView(MethodView):
                 product.keywords = request.data.get('keywords', '')
                 product.image = str(request.data.get('image', ''))
                 product.video = str(request.data.get('video', ''))
-
+                product.remark = str(request.data.get('remark', ''))
                 product.save()
 
                 response = {
@@ -448,6 +452,7 @@ class OneProductView(MethodView):
                     'keywords': product.keywords,
                     'image': product.image,
                     'video': product.video,
+                    'remark': product.remark,
                     'status': 200
                 }
 
