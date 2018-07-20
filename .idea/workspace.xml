@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a172d256-ff89-4f0f-ad61-9a99861600c8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/app/modules/shelves/models.py" afterPath="$PROJECT_DIR$/app/modules/shelves/models.py" />
       <change beforePath="$PROJECT_DIR$/app/modules/shelves/views.py" afterPath="$PROJECT_DIR$/app/modules/shelves/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,14 +50,14 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/modules/shelves/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="254" column="126" lean-forward="false" selection-start-line="254" selection-start-column="126" selection-end-line="254" selection-end-column="126" />
+            <state relative-caret-position="137">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
-                <element signature="e#257#3683#0" expanded="false" />
-                <element signature="e#3722#6889#0" expanded="false" />
-                <element signature="e#9165#11888#0" expanded="false" />
-                <element signature="e#11929#15274#0" expanded="false" />
+                <element signature="e#3739#6906#0" expanded="false" />
+                <element signature="e#6953#9159#0" expanded="false" />
+                <element signature="e#9199#12051#0" expanded="false" />
+                <element signature="e#12092#15592#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -65,8 +66,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/shelves/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="101" column="37" lean-forward="true" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="37" />
+            <state relative-caret-position="1680">
+              <caret line="112" column="157" lean-forward="false" selection-start-line="112" selection-start-column="157" selection-end-line="112" selection-end-column="157" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -86,8 +87,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ompa</find>
-      <find>json</find>
       <find>ompan</find>
       <find>view</find>
       <find>intere</find>
@@ -116,6 +115,8 @@
       <find>beacon</find>
       <find>todo</find>
       <find>print</find>
+      <find>keyw</find>
+      <find>image</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app/</dir>
@@ -690,8 +691,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/shelves/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="101" column="37" lean-forward="true" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="37" />
+        <state relative-caret-position="1680">
+          <caret line="112" column="157" lean-forward="false" selection-start-line="112" selection-start-column="157" selection-end-line="112" selection-end-column="157" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -700,14 +701,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/shelves/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="254" column="126" lean-forward="false" selection-start-line="254" selection-start-column="126" selection-end-line="254" selection-end-column="126" />
+        <state relative-caret-position="137">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
-            <element signature="e#257#3683#0" expanded="false" />
-            <element signature="e#3722#6889#0" expanded="false" />
-            <element signature="e#9165#11888#0" expanded="false" />
-            <element signature="e#11929#15274#0" expanded="false" />
+            <element signature="e#3739#6906#0" expanded="false" />
+            <element signature="e#6953#9159#0" expanded="false" />
+            <element signature="e#9199#12051#0" expanded="false" />
+            <element signature="e#12092#15592#0" expanded="false" />
           </folding>
         </state>
       </provider>
